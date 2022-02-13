@@ -6,6 +6,12 @@
 若压制功耗期间`CPU占用`大于`触发占用`，则立即解除CPU功耗压制  
 若`显卡功耗`持续小于`释放功耗`超过`检测时间`，则解除CPU功耗压制  
 
+## 适合的设备
+使用`Nvidia`独显的散热或供电存在瓶颈的设备，如大部分笔记本  
+没有独显的设备自己用`Throttle Stop`设置平衡就行了  
+`AMD YES`平台为什么不用`Smart Shift`呢？  
+请不要在散热供电充裕的台式机上使用本项目，会负优化  
+
 ## 使用方法
 从[Release](https://github.com/GlacierLab/PowerRing/releases)下载解压后运行`Resona.exe`按照指引操作即可  
 
