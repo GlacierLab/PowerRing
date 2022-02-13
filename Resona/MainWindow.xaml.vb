@@ -4,6 +4,8 @@ Public Class MainWindow
     Dim _computeruCounter
     Dim GPUPowerSensor
     Dim CurrentGPU
+    Dim InSupress
+    Dim SupressCount
 
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         StartMonitor()
@@ -47,5 +49,75 @@ Public Class MainWindow
         CurrentGPU.Update()
         Dim GPU = GPUPowerSensor.Value()
         GPUPower.Content = GPU.ToString() + "W"
+        Dim canSupress = False
+        If CPU > CPUHigh.Text Then
+            CPUPercent.Foreground = Brushes.Red
+            ExitSupress()
+        ElseIf CPU > CPULow.Text Then
+            CPUPercent.Foreground = Brushes.Yellow
+            If InSupress Then
+                canSupress = True
+            End If
+        Else
+            CPUPercent.Foreground = Brushes.Green
+            canSupress = True
+        End If
+        Dim needSupress = False
+        If GPU > GPUHigh.Text Then
+            needSupress = True
+        ElseIf GPU > GPULow.Text Then
+            If InSupress Then
+                needSupress = True
+            End If
+        End If
+        Dim CounterAction = False
+        If Not InSupress And canSupress And needSupress Then
+            CountSupress()
+            CounterAction = True
+        End If
+        If Not needSupress And InSupress Then
+            CountExit()
+            CounterAction = True
+        End If
+        If Not CounterAction Then
+            ClearCount()
+        End If
     End Sub
+    Private Sub ExitSupress()
+        InSupress = False
+        SupressStatus.Foreground = Brushes.Red
+        SupressStatus.Content = "压制状态：禁用"
+    End Sub
+    Private Sub EnterSupress()
+        InSupress = True
+        SupressStatus.Foreground = Brushes.Green
+        SupressStatus.Content = "压制状态：启用"
+    End Sub
+    Private Sub CountExit()
+        Counter.Foreground = Brushes.Red
+        If SupressCount = BeforeTime.Text Then
+            ExitSupress()
+            SupressCount = 0
+            Counter.Content = ""
+        Else
+            SupressCount += 1
+            Counter.Content = SupressCount
+        End If
+    End Sub
+    Private Sub CountSupress()
+        Counter.Foreground = Brushes.Green
+        If SupressCount = BeforeTime.Text Then
+            EnterSupress()
+            SupressCount = 0
+            Counter.Content = ""
+        Else
+            SupressCount += 1
+            Counter.Content = SupressCount
+        End If
+    End Sub
+    Private Sub ClearCount()
+        SupressCount = 0
+        Counter.Content = ""
+    End Sub
+
 End Class
