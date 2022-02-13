@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="PowerRing" Height="450" Width="400" ResizeMode="CanMinimize">
+    <Grid HorizontalAlignment="Center" Margin="0,0,0,-6" Width="400">
+        <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
+        <Label Content="触发占用" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血"/>
 
     </Grid>
 </Window>
