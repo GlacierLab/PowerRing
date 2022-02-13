@@ -9,7 +9,16 @@
     <Grid HorizontalAlignment="Center" Margin="0,0,0,-6" Width="400">
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
-        <Label Content="触发占用" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血"/>
+        <Label Content="触发占用(%)" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血" Height="26"/>
+        <TextBox x:Name="CPUHigh" Margin="90,46,210,0" TextWrapping="Wrap" Text="85" VerticalAlignment="Top" Height="26" FontSize="16"/>
+        <Label Content="释放占用(%)" HorizontalAlignment="Left" Margin="210,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用低于此数值时允许压制CPU功耗改善显卡性能" Height="26"/>
+        <TextBox x:Name="CPULow" Margin="290,46,10,0" TextWrapping="Wrap" Text="70" VerticalAlignment="Top" Height="26" FontSize="16"/>
+        <Label Content="显卡监控设置" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="GPUPower" Content="--W" HorizontalAlignment="Right" Margin="0,77,10,0" VerticalAlignment="Top"/>
+        <Label Content="触发功耗(W)" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26"/>
+        <TextBox x:Name="GPUHigh" Margin="90,113,210,0" TextWrapping="Wrap" Text="78" VerticalAlignment="Top" Height="26" FontSize="16"/>
+        <Label Content="释放功耗(W)" HorizontalAlignment="Left" Margin="210,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用低于此数值时允许CPU恢复满血" Height="26"/>
+        <TextBox x:Name="GPULow" Margin="290,113,10,0" TextWrapping="Wrap" Text="75" VerticalAlignment="Top" Height="26" FontSize="16"/>
 
     </Grid>
 </Window>

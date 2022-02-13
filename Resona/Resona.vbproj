@@ -9,6 +9,7 @@
     <Company>琴梨梨</Company>
     <Copyright>琴梨梨 2022 OpenSource GPLv3</Copyright>
     <Platforms>x64</Platforms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -32,7 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NvAPIWrapper.Net" Version="0.8.1.101" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.8.9" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
