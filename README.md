@@ -6,10 +6,20 @@
 若压制功耗期间`CPU占用`大于`触发占用`，则立即解除CPU功耗压制  
 若`显卡功耗`持续小于`释放功耗`超过`检测时间`，则解除CPU功耗压制  
 
+## 使用方法
+从[Release](https://github.com/GlacierLab/PowerRing/releases)下载解压后运行`Resona.exe`按照指引操作即可  
+
+## 运行环境
+本项目需要`.NET 6.0`，如果你没有运行时，请[点击这里](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.2-windows-x64-installer)下载安装  
+
 ## 开源依赖
 `本项目由以下开源项目驱动`  
 [.NET](https://github.com/dotnet)  
 [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)  
+
+## 闭源依赖
+[ThrottleStop](https://www.techpowerup.com/download/techpowerup-throttlestop/)  
+本程序依赖于`ThrottleStop`限制功耗  
 
 
 ## 工程名称为什么叫Resona
