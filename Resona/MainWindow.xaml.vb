@@ -125,7 +125,10 @@ Public Class MainWindow
         Dim SupressHex As String = PL1Prefix + (Integer.Parse(CPUOrigin.Text) * 8).ToString("X3")
         WriteINI("ThrottleStop", "POWERLIMITEAX", SupressHex, ConfigFile)
         WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
-        Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+        Task.Run(Async Function()
+                     Await Task.Delay(1000)
+                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+                 End Function)
     End Sub
     Private Sub EnterSupress()
         KillProcess()
@@ -135,7 +138,10 @@ Public Class MainWindow
         Dim SupressHex As String = PL1Prefix + (Integer.Parse(CPUSupress.Text) * 8).ToString("X3")
         WriteINI("ThrottleStop", "POWERLIMITEAX", SupressHex, ConfigFile)
         WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
-        Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+        Task.Run(Async Function()
+                     Await Task.Delay(1000)
+                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+                 End Function)
     End Sub
     Private Sub KillProcess()
         'Interaction.Shell("taskkill /f /im ThrottleStop.exe")
