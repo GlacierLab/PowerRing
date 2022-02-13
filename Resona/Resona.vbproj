@@ -38,4 +38,13 @@
     <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ThrottleStop\ThrottleStop.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ThrottleStop\ThrottleStop.ini">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
