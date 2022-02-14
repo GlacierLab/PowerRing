@@ -92,7 +92,7 @@ Public Class MainWindow
         If runWorker Then
             If CPU > CPUHigh.Text Then
                 CPUPercent.Foreground = Brushes.Red
-                If InSupress Then
+                If InSupress And Not IgnoreCPU.IsChecked Then
                     ExitSupress()
                 End If
             ElseIf CPU > CPULow.Text Then
@@ -102,6 +102,9 @@ Public Class MainWindow
                 End If
             Else
                 CPUPercent.Foreground = Brushes.Green
+                canSupress = True
+            End If
+            If IgnoreCPU.IsChecked Then
                 canSupress = True
             End If
             Dim needSupress = False
@@ -140,7 +143,7 @@ Public Class MainWindow
         WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
         Task.Run(Async Function()
                      Await Task.Delay(1000)
-                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.MinimizedNoFocus)
                  End Function)
     End Sub
     Private Sub EnterSupress()
@@ -153,7 +156,7 @@ Public Class MainWindow
         WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
         Task.Run(Async Function()
                      Await Task.Delay(1000)
-                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.Hide)
+                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.MinimizedNoFocus)
                  End Function)
     End Sub
     Private Sub KillProcess()
