@@ -38,8 +38,15 @@ Public Class MainWindow
             Process.Start("ThrottleStop.exe")
             End
         Else
-            PL1Prefix = GetINI("ThrottleStop", "POWERLIMITEAX", "", ConfigFile).Substring(0, 7)
-            PL2Prefix = GetINI("ThrottleStop", "POWERLIMITEDX", "", ConfigFile).Substring(0, 7)
+            '就有铸币不看提示要完成TPL设置，逼我加个TryCatch
+            Try
+                PL1Prefix = GetINI("ThrottleStop", "POWERLIMITEAX", "", ConfigFile).Substring(0, 7)
+                PL2Prefix = GetINI("ThrottleStop", "POWERLIMITEDX", "", ConfigFile).Substring(0, 7)
+            Catch
+                MsgBox("你没有在ThrottleStop内设置PL1和PL2！",, "错误")
+                Process.Start("ThrottleStop.exe")
+                End
+            End Try
         End If
     End Sub
     Private Function StartMonitor()
@@ -85,7 +92,9 @@ Public Class MainWindow
         If runWorker Then
             If CPU > CPUHigh.Text Then
                 CPUPercent.Foreground = Brushes.Red
-                ExitSupress()
+                If InSupress Then
+                    ExitSupress()
+                End If
             ElseIf CPU > CPULow.Text Then
                 CPUPercent.Foreground = Brushes.Yellow
                 If InSupress Then
@@ -97,11 +106,15 @@ Public Class MainWindow
             End If
             Dim needSupress = False
             If GPU > GPUHigh.Text Then
+                GPUPower.Foreground = Brushes.Red
                 needSupress = True
             ElseIf GPU > GPULow.Text Then
+                GPUPower.Foreground = Brushes.Yellow
                 If InSupress Then
                     needSupress = True
                 End If
+            Else
+                GPUPower.Foreground = Brushes.Green
             End If
             Dim CounterAction = False
             If Not InSupress And canSupress And needSupress Then

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
-        Title="聚能环PowerRing" Height="398" Width="400" ResizeMode="CanMinimize">
+        Title="聚能环PowerRing1.0.2" Height="398" Width="400" ResizeMode="CanMinimize">
     <Grid HorizontalAlignment="Center" Margin="0,0,0,-6" Width="400">
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" ToolTip="红色：CPU压制禁用；黄色：不改变压制状态；绿色：CPU压制可用" FontFamily="Microsoft YaHei UI"/>
