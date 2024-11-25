@@ -16,19 +16,15 @@
         <Label Content="显卡监控设置" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label x:Name="GPUPower" Content="--W" HorizontalAlignment="Right" Margin="0,77,10,0" VerticalAlignment="Top" ToolTip="红色：达到触发功耗；绿色：未达到触发功耗" FontFamily="Microsoft YaHei UI"/>
         <Label Content="触发功耗(W)" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26" FontFamily="Microsoft YaHei UI"/>
-        <TextBox x:Name="GPUHigh" Margin="90,113,210,0" TextWrapping="Wrap" Text="78" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
+        <TextBox x:Name="GPUHigh" Margin="90,113,210,0" TextWrapping="Wrap" Text="125" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label Content="释放功耗(W)" HorizontalAlignment="Left" Margin="210,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用低于此数值时允许CPU恢复满血" Height="26" FontFamily="Microsoft YaHei UI"/>
-        <TextBox x:Name="GPULow" Margin="290,113,10,0" TextWrapping="Wrap" Text="75" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
+        <TextBox x:Name="GPULow" Margin="290,113,10,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label Content="压制器设置" HorizontalAlignment="Left" Margin="11,144,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label x:Name="Counter" Content="0" HorizontalAlignment="Right" Margin="0,144,9,0" VerticalAlignment="Top" ToolTip="红色：即将禁用压制；绿色：即将启用压制" FontFamily="Microsoft YaHei UI"/>
         <Label Content="检测时间(秒)" HorizontalAlignment="Left" Margin="11,180,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26" FontFamily="Microsoft YaHei UI"/>
         <TextBox x:Name="BeforeTime" Margin="91,180,209,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label x:Name="SupressStatus" Content="压制状态：无效" HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold" FontFamily="Microsoft YaHei UI"/>
-        <Label Content="压制功耗(W)" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="压制启用时的CPU功耗墙" Height="26" FontFamily="Microsoft YaHei UI"/>
-        <TextBox x:Name="CPUSupress" Margin="91,211,209,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
-        <Label Content="解锁功耗(W)" HorizontalAlignment="Left" Margin="211,211,0,0" VerticalAlignment="Top" ToolTip="无压制时的默认CPU功耗墙" Height="26" FontFamily="Microsoft YaHei UI"/>
-        <TextBox x:Name="CPUOrigin" Margin="291,211,9,0" TextWrapping="Wrap" Text="200" VerticalAlignment="Top" Height="26" FontSize="16" FontFamily="Microsoft YaHei UI"/>
-        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2022" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Width="380"/>
+        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Width="380"/>
         <Button x:Name="RunBtn" Content="启动压制器" Margin="10,266,10,0" VerticalAlignment="Top" Height="43" FontSize="24" FontFamily="DengXian" FontWeight="Bold"/>
         <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" HorizontalAlignment="Left" Margin="211,0,0,0" VerticalAlignment="Center" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" FontFamily="Microsoft YaHei"/>
 
