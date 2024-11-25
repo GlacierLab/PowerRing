@@ -24,9 +24,13 @@ Public Class MainWindow
     Dim runWorker
     Dim SupressCount
 
+    Dim Powercfg As PowercfgInterface.Instance
+
+
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
         StartMonitor()
+        Powercfg = New PowercfgInterface.Instance()
     End Sub
     Private Function StartMonitor()
         _computeruCounter = New PerformanceCounter("Processor", "% Processor Time", "_Total", True)

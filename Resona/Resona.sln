@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Resona", "Resona.vbproj", "{83165A75-6BF7-4BD7-85DE-F21E28C90C26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowercfgInterface", "..\PowercfgInterface\PowercfgInterface.csproj", "{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,14 @@ Global
 		{83165A75-6BF7-4BD7-85DE-F21E28C90C26}.Release|Any CPU.ActiveCfg = Release|x64
 		{83165A75-6BF7-4BD7-85DE-F21E28C90C26}.Release|x64.ActiveCfg = Release|x64
 		{83165A75-6BF7-4BD7-85DE-F21E28C90C26}.Release|x64.Build.0 = Release|x64
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Debug|x64.Build.0 = Debug|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Release|x64.ActiveCfg = Release|Any CPU
+		{785C2881-6CC1-4BA4-8EB0-C8BE482DA74D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
