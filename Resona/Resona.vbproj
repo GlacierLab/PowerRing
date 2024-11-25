@@ -37,13 +37,4 @@
     <PackageReference Include="LibreHardwareMonitorLib" Version="0.8.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="ThrottleStop\ThrottleStop.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="ThrottleStop\ThrottleStop.ini">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

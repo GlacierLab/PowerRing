@@ -23,31 +23,10 @@ Public Class MainWindow
     Dim InSupress
     Dim runWorker
     Dim SupressCount
-    Dim ConfigFile As String = ".\ThrottleStop.ini"
-    'POWERLIMITEDX是PL2,POWERLIMITEAX是PL1
-    Dim PL1Prefix As String
-    Dim PL2Prefix As String
 
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Directory.SetCurrentDirectory(Environment.CurrentDirectory + "\ThrottleStop")
         RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
         StartMonitor()
-        '他娘的不研究怎么直接改PL1PL2了，直接调用ThrottleStop一把梭，最原始的思路就是最他娘的好使
-        If Not File.Exists(ConfigFile) Then
-            MsgBox("首次启动需要进行ThrottleStop的初始化设置" + Environment.NewLine + "请在新打开的ThrottleStop窗口中完成TPL设置和其他基础选项设置" + Environment.NewLine + "请务必勾选Start Minimized选项以保证使用体验！" + Environment.NewLine + "你也可以拷贝一份ThrottleStop配置文件到目录" + Environment.NewLine + "请在设置完成后重启本程序",, "提示")
-            Process.Start("ThrottleStop.exe")
-            End
-        Else
-            '就有铸币不看提示要完成TPL设置，逼我加个TryCatch
-            Try
-                PL1Prefix = GetINI("ThrottleStop", "POWERLIMITEAX", "", ConfigFile).Substring(0, 7)
-                PL2Prefix = GetINI("ThrottleStop", "POWERLIMITEDX", "", ConfigFile).Substring(0, 7)
-            Catch
-                MsgBox("你没有在ThrottleStop内设置PL1和PL2！",, "错误")
-                Process.Start("ThrottleStop.exe")
-                End
-            End Try
-        End If
     End Sub
     Private Function StartMonitor()
         _computeruCounter = New PerformanceCounter("Processor", "% Processor Time", "_Total", True)
@@ -134,37 +113,14 @@ Public Class MainWindow
         End If
     End Sub
     Private Sub ExitSupress()
-        KillProcess()
         InSupress = False
         SupressStatus.Foreground = Brushes.Red
         SupressStatus.Content = "压制状态：无效"
-        Dim SupressHex As String = PL1Prefix + (Integer.Parse(CPUOrigin.Text) * 8).ToString("X3")
-        WriteINI("ThrottleStop", "POWERLIMITEAX", SupressHex, ConfigFile)
-        WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
-        Task.Run(Async Function()
-                     Await Task.Delay(1000)
-                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.MinimizedNoFocus)
-                 End Function)
     End Sub
     Private Sub EnterSupress()
-        KillProcess()
         InSupress = True
         SupressStatus.Foreground = Brushes.Green
         SupressStatus.Content = "压制状态：工作"
-        Dim SupressHex As String = PL1Prefix + (Integer.Parse(CPUSupress.Text) * 8).ToString("X3")
-        WriteINI("ThrottleStop", "POWERLIMITEAX", SupressHex, ConfigFile)
-        WriteINI("ThrottleStop", "POWERLIMITEDX", SupressHex, ConfigFile)
-        Task.Run(Async Function()
-                     Await Task.Delay(1000)
-                     Interaction.Shell(".\ThrottleStop.exe", AppWinStyle.MinimizedNoFocus)
-                 End Function)
-    End Sub
-    Private Sub KillProcess()
-        'Interaction.Shell("taskkill /f /im ThrottleStop.exe")
-        Dim Proc = Process.GetProcessesByName("ThrottleStop")
-        If Proc.Length > 0 Then
-            Proc(0).Kill()
-        End If
     End Sub
     Private Sub CountExit()
         Counter.Foreground = Brushes.Red
@@ -198,7 +154,6 @@ Public Class MainWindow
             runWorker = False
             RunBtn.Content = "启动压制器"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
-            KillProcess()
         Else
             runWorker = True
             RunBtn.Content = "正在压制，点击停止"
@@ -207,7 +162,6 @@ Public Class MainWindow
     End Sub
 
     Private Sub MainWindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        KillProcess()
     End Sub
 
     Private Sub Github_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Github.MouseDown
