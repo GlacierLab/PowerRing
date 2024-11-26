@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
-        Title="聚能环PowerRing1.1.0" Height="398" Width="400" ResizeMode="CanMinimize">
+        Title="聚能环 PowerRing 2.0" Height="398" Width="400" ResizeMode="CanMinimize">
     <Grid HorizontalAlignment="Center" Margin="0,0,0,-6" Width="400">
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft YaHei UI"/>
         <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" ToolTip="红色：CPU压制禁用；黄色：不改变压制状态；绿色：CPU压制可用" FontFamily="Microsoft YaHei UI"/>
@@ -27,8 +27,8 @@
         <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Width="380"/>
         <Button x:Name="RunBtn" Content="启动压制器" Margin="10,266,10,0" VerticalAlignment="Top" Height="43" FontSize="24" FontFamily="DengXian" FontWeight="Bold"/>
         <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" HorizontalAlignment="Left" Margin="211,0,0,0" VerticalAlignment="Center" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" FontFamily="Microsoft YaHei"/>
-        <Label Content="压制模式" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26" FontFamily="Microsoft YaHei UI"/>
-        <Label Content="解除模式" HorizontalAlignment="Left" Margin="211,211,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26" FontFamily="Microsoft YaHei UI"/>
+        <Label Content="压制模式" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="压制时的睿频模式" Height="26" FontFamily="Microsoft YaHei UI"/>
+        <Label Content="解除模式" HorizontalAlignment="Left" Margin="211,211,0,0" VerticalAlignment="Top" ToolTip="解除压制后恢复到的睿频模式" Height="26" FontFamily="Microsoft YaHei UI"/>
         <ComboBox x:Name="SupressMode" HorizontalAlignment="Left" Margin="71,213,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
             <Label Content="禁止睿频"/>
             <Label Content="启用睿频"/>
@@ -47,11 +47,11 @@
             <Label Content="激进保证"/>
             <Label Content="高效激进保证"/>
         </ComboBox>
-        <ComboBox x:Name="CpuMonitorMode" HorizontalAlignment="Left" Margin="216,12,0,0" VerticalAlignment="Top" Width="88" SelectedIndex="1">
+        <ComboBox x:Name="CpuMonitorMode" HorizontalAlignment="Left" Margin="216,12,0,0" VerticalAlignment="Top" Width="88" SelectedIndex="1" ToolTip="CPU时间是传统的核心时间片占用比例，它不考虑频率。资源利用率使用性能计数器，考虑了频率对性能的影响，更适合散热或供电受限的设备，但可能会超过100%。">
             <Label Content="CPU时间"/>
             <Label Content="资源利用率"/>
         </ComboBox>
-        <Label Content="指标" HorizontalAlignment="Left" Margin="177,10,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血" Height="26" FontFamily="Microsoft YaHei UI"/>
+        <Label Content="指标" HorizontalAlignment="Left" Margin="177,10,0,0" VerticalAlignment="Top" Height="26" FontFamily="Microsoft YaHei UI"/>
 
     </Grid>
 </Window>
