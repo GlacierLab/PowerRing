@@ -3,20 +3,6 @@ Imports System.IO
 Imports LibreHardwareMonitor.Hardware
 
 Public Class MainWindow
-#Disable Warning CA2101 ' Specify marshaling for P/Invoke string arguments
-    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpDefault As String, lpReturnedString As String, nSize As Integer, lpFileName As String) As Integer
-#Disable Warning CA2101 ' Specify marshaling for P/Invoke string arguments
-    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpString As String, lpFileName As String) As Integer
-    Public Shared Function GetINI(Section As String, AppName As String, lpDefault As String, FileName As String) As String
-        Dim Str As String = ""
-        Str = LSet(Str, 256)
-        GetPrivateProfileString(Section, AppName, lpDefault, Str, Len(Str), FileName)
-        Return Microsoft.VisualBasic.Left(Str, InStr(Str, Chr(0)) - 1)
-    End Function
-    Public Shared Function WriteINI(Section As String, AppName As String, lpDefault As String, FileName As String) As Long
-        WriteINI = WritePrivateProfileString(Section, AppName, lpDefault, FileName)
-    End Function
-
     Dim _computeruCounter
     Dim GPUPowerSensor
     Dim CurrentGPU
