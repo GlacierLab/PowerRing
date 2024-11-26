@@ -19,7 +19,7 @@ Public Class MainWindow
         Powercfg = New PowercfgInterface.Instance()
     End Sub
     Private Function StartMonitor()
-        _computeruCounter = New PerformanceCounter("Processor", "% Processor Time", "_Total", True)
+        CpuMonitorMode_SelectionChanged(Nothing, Nothing)
         GPUFinder()
         Dim dispatcherTimer = New Threading.DispatcherTimer()
         AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
@@ -158,5 +158,9 @@ Public Class MainWindow
         Dim startInfo As New ProcessStartInfo("https://github.com/GlacierLab/PowerRing")
         startInfo.UseShellExecute = True
         Process.Start(startInfo)
+    End Sub
+
+    Private Sub CpuMonitorMode_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles CpuMonitorMode.SelectionChanged
+        _computeruCounter = New PerformanceCounter("Processor Information", If(CpuMonitorMode.SelectedIndex, "% Processor Utility", "% Processor Time"), "_Total", True)
     End Sub
 End Class

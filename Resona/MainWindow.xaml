@@ -47,6 +47,11 @@
             <Label Content="激进保证"/>
             <Label Content="高效激进保证"/>
         </ComboBox>
+        <ComboBox x:Name="CpuMonitorMode" HorizontalAlignment="Left" Margin="216,12,0,0" VerticalAlignment="Top" Width="88" SelectedIndex="1">
+            <Label Content="CPU时间"/>
+            <Label Content="资源利用率"/>
+        </ComboBox>
+        <Label Content="指标" HorizontalAlignment="Left" Margin="177,10,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血" Height="26" FontFamily="Microsoft YaHei UI"/>
 
     </Grid>
 </Window>
