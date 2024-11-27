@@ -10,6 +10,7 @@ namespace PowercfgInterface
             using (Process process = new Process())
             {
                 process.StartInfo.FileName = command;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.Arguments = String.Join(" ", args);
