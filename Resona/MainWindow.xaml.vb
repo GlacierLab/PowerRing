@@ -54,10 +54,10 @@ Public Class MainWindow
     End Sub
 
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)
-        Dim CPU = _computeruCounter.NextValue()
+        Dim CPU = Math.Round(CDbl(_computeruCounter.NextValue()), 1)
         CPUPercent.Content = CPU.ToString() + "%"
         CurrentGPU.Update()
-        Dim GPU = GPUPowerSensor.Value()
+        Dim GPU = Math.Round(CDbl(GPUPowerSensor.Value()), 1)
         GPUPower.Content = GPU.ToString() + "W"
         Dim canSupress = False
         If runWorker Then
