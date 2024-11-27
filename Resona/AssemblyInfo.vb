@@ -1,5 +1,3 @@
-Imports System.Windows
-
 'The ThemeInfo attribute describes where any theme specific and generic resource dictionaries can be found.
 '1st parameter: where theme specific resource dictionaries are located
 '(used if a resource is not found in the page,

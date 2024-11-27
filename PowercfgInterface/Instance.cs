@@ -4,13 +4,14 @@ namespace PowercfgInterface
 {
     public class Instance
     {
-        public string? ActiveProfile=null;
+        public string? ActiveProfile = null;
 
         [DllImport(@"kernel32.dll")]
         extern private static bool GetSystemPowerStatus(out PowerStatus BatteryInfo);
 
 
-        public Instance() {
+        public Instance()
+        {
             Init();
         }
 
@@ -24,7 +25,7 @@ namespace PowercfgInterface
         {
             return ActiveProfile != null;
         }
-        
+
 
         // Get and update current active profile
         private async Task<string?> GetActiveProfile()
@@ -34,9 +35,9 @@ namespace PowercfgInterface
             {
                 output = output.Split(":")[1];
                 output = output.Split("(")[0];
-                output=output.Trim();
+                output = output.Trim();
                 ActiveProfile = output;
-                Console.WriteLine("Active Profile GUID: "+output);
+                Console.WriteLine("Active Profile GUID: " + output);
                 return output;
             }
             return null;
