@@ -60,8 +60,7 @@ namespace PowercfgInterface
         // REF: https://www.cnblogs.com/netlog/p/15914468.html
         private bool IsAC()
         {
-            PowerStatus ps = default(PowerStatus);
-            if (GetSystemPowerStatus(out ps) == true)
+            if (GetSystemPowerStatus(out PowerStatus ps) == true)
             {
                 return ps.ACLineStatus == 1;
             }
@@ -92,6 +91,7 @@ namespace PowercfgInterface
                 await ChangeBoostMode(IsAC(), mode);
                 await ApplyUpdate();
             }
+        }
     }
 
     public struct PowerStatus

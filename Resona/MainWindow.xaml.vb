@@ -106,11 +106,13 @@ Public Class MainWindow
         InSupress = False
         SupressStatus.Foreground = Brushes.Red
         SupressStatus.Content = "压制状态：无效"
+        Powercfg.ChangeBoostModeAndApply(NormalMode.SelectedIndex)
     End Sub
     Private Sub EnterSupress()
         InSupress = True
         SupressStatus.Foreground = Brushes.Green
         SupressStatus.Content = "压制状态：工作"
+        Powercfg.ChangeBoostModeAndApply(SupressMode.SelectedIndex)
     End Sub
     Private Sub CountExit()
         Counter.Foreground = Brushes.Red
@@ -142,6 +144,9 @@ Public Class MainWindow
     Private Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
         If runWorker Then
             runWorker = False
+            If InSupress Then
+                ExitSupress()
+            End If
             RunBtn.Content = "启动压制器"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
         Else
@@ -152,6 +157,9 @@ Public Class MainWindow
     End Sub
 
     Private Sub MainWindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If runWorker And InSupress Then
+            ExitSupress()
+        End If
     End Sub
 
     Private Sub Github_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Github.MouseDown
