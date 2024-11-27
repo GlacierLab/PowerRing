@@ -11,11 +11,14 @@ Public Class MainWindow
 
     Dim Powercfg As PowercfgInterface.Instance
 
+    Public Async Function PreInit() As Task
+        StartMonitor()
+        Powercfg = New PowercfgInterface.Instance()
+        Await Powercfg.Init()
+    End Function
 
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
-        StartMonitor()
-        Powercfg = New PowercfgInterface.Instance()
     End Sub
     Private Function StartMonitor()
         CpuMonitorMode_SelectionChanged(Nothing, Nothing)

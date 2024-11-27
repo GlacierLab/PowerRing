@@ -12,10 +12,12 @@ namespace PowercfgInterface
 
         public Instance()
         {
-            Init();
+            
         }
 
-        public async void Init()
+
+
+        public async Task Init()
         {
             await GetActiveProfile();
             await EnableHiddenAttr();

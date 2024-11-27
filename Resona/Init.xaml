@@ -1,0 +1,26 @@
+﻿<Window x:Class="Init"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Resona"
+        mc:Ignorable="d"
+        Title="Resona is loading..." Height="110" Width="300" WindowStyle="None" AllowsTransparency="True" Background="#B2FFFFFF" BorderThickness="1,1,1,1"  WindowStartupLocation="CenterScreen" Topmost="True" Cursor="Wait" ShowInTaskbar="False">
+    <Window.BorderBrush>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+            <GradientStop Color="Red" Offset="1"/>
+            <GradientStop Color="Orange" Offset="0.83"/>
+            <GradientStop Color="Yellow" Offset="0.67"/>
+            <GradientStop Color="Green" Offset="0.5"/>
+            <GradientStop Color="Blue" Offset="0.33"/>
+            <GradientStop Color="Indigo" Offset="0.17"/>
+            <GradientStop Color="Violet" Offset="0"/>
+        </LinearGradientBrush>
+    </Window.BorderBrush>
+    <Grid>
+        <Label Content="Project Resona" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16"/>
+        <Label Content="聚能环 Power Ring" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+        <Label Content="琴梨梨 &amp; Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="启动中..." HorizontalAlignment="Left" Margin="246,83,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
