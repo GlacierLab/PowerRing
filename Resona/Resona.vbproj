@@ -10,6 +10,7 @@
     <Platforms>x64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Version>2.0.0</Version>
+    <ApplicationIcon>Resona.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -27,6 +28,10 @@
     <DefineTrace>false</DefineTrace>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Include="Resona.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Windows" />
