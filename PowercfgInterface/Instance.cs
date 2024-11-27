@@ -68,6 +68,30 @@ namespace PowercfgInterface
             return true;
         }
 
+
+        private async Task ApplyUpdate()
+        {
+            if (ActiveProfile != null)
+            {
+                await Pipe.RunAsync("powercfg.exe", ["-S", "SCHEME_CURRENT"]);
+            }
+        }
+
+        private async Task ChangeBoostMode(bool AC, int mode)
+        {
+            if (ActiveProfile != null)
+            {
+                await Pipe.RunAsync("powercfg.exe", [AC ? "/SETACVALUEINDEX" : "/SETDCVALUEINDEX", ActiveProfile, "54533251-82be-4824-96c1-47b60b740d00", "be337238-0d82-4146-a960-4f3749d470c7", mode.ToString()]);
+            }
+        }
+
+        public async void ChangeBoostModeAndApply(int mode)
+        {
+            if (ActiveProfile != null)
+            {
+                await ChangeBoostMode(IsAC(), mode);
+                await ApplyUpdate();
+            }
     }
 
     public struct PowerStatus
