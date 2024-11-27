@@ -32,6 +32,7 @@
 `本项目由以下开源项目驱动`  
 [.NET](https://github.com/dotnet)  
 [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)  
+[小赖字体](https://github.com/lxgw/kose-font)  
 
 ## 致谢
 https://www.sakya.it/wordpress/enable-disable-cpu-turbo-boost-from-command-line/  

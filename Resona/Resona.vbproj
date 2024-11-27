@@ -9,7 +9,7 @@
     <Copyright>琴梨梨 2024 OpenSource GPLv3</Copyright>
     <Platforms>x64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <ApplicationIcon>Resona.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -28,6 +28,10 @@
     <DefineTrace>false</DefineTrace>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="XiaolaiSC.ttf" />
+  </ItemGroup>
   
   <ItemGroup>
     <Content Include="Resona.ico" />
@@ -51,6 +55,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PowercfgInterface\PowercfgInterface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="XiaolaiSC.ttf" />
   </ItemGroup>
 
 </Project>
