@@ -162,6 +162,7 @@ Public Class MainWindow
         If runWorker And InSupress Then
             ExitSupress()
         End If
+        My.Settings.Save()
     End Sub
 
     Private Sub Github_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Github.MouseDown
@@ -172,5 +173,10 @@ Public Class MainWindow
 
     Private Sub CpuMonitorMode_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles CpuMonitorMode.SelectionChanged
         _computeruCounter = New PerformanceCounter("Processor Information", If(CpuMonitorMode.SelectedIndex, "% Processor Utility", "% Processor Time"), "_Total", True)
+    End Sub
+
+    ''REF: https://stackoverflow.com/a/12721673
+    Private Sub NumberValidationTextBox(ByVal sender As TextBox, ByVal e As TextCompositionEventArgs)
+        e.Handled = Not Integer.TryParse(e.Text, Nothing)
     End Sub
 End Class
