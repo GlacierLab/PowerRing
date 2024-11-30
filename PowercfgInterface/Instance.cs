@@ -45,6 +45,15 @@ namespace PowercfgInterface
             return null;
         }
 
+        public async Task<bool> IsProfileChanged()
+        {
+            if (ActiveProfile != null)
+            {
+                return ActiveProfile == (await GetActiveProfile());
+            }
+            return false;
+        }
+
         private async Task<bool> EnableHiddenAttr()
         {
             if (ActiveProfile != null)
@@ -61,7 +70,7 @@ namespace PowercfgInterface
 
         // Return true if fail
         // REF: https://www.cnblogs.com/netlog/p/15914468.html
-        private bool IsAC()
+        private static bool IsAC()
         {
             if (GetSystemPowerStatus(out PowerStatus ps) == true)
             {
