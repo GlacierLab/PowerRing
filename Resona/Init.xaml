@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
+        FontFamily ="pack://application:,,,/#Xiaolai SC"
         Title="Resona is loading..." Height="110" Width="300" WindowStyle="None" AllowsTransparency="True" Background="#B2FFFFFF" BorderThickness="1,1,1,1"  WindowStartupLocation="CenterScreen" Topmost="True" Cursor="Wait" ShowInTaskbar="False">
     <Window.BorderBrush>
         <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
@@ -18,9 +19,18 @@
         </LinearGradientBrush>
     </Window.BorderBrush>
     <Grid>
-        <Label Content="Project Resona" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16"/>
-        <Label Content="聚能环 Power Ring" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-        <Label Content="琴梨梨 &amp; Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
-        <Label Content="启动中..." HorizontalAlignment="Left" Margin="246,83,0,0" VerticalAlignment="Top"/>
+        <Label Content="Project Resona" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16" Padding="0,0,0,0"/>
+        <Label Content="聚能环 Power Ring" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Padding="0,0,0,0"/>
+        <Label Content="琴梨梨 &amp; Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <Label x:Name="Status" Content="启动中..." HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="142" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5" Height="50" VerticalContentAlignment="Bottom">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.496"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.108"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
     </Grid>
 </Window>
