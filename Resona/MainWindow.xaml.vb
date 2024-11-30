@@ -15,6 +15,7 @@ Public Class MainWindow
         StartMonitor()
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
+        My.Settings.Upgrade()
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element.GetType Is GetType(TextBox) Then
