@@ -15,6 +15,21 @@ Public Class MainWindow
         StartMonitor()
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
+        For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
+            Dim Element = FindName(val.Name)
+            If Element.GetType Is GetType(TextBox) Then
+                Element = CType(Element, TextBox)
+                Element.Text = My.Settings.Item(val.Name)
+            ElseIf Element.GetType Is GetType(CheckBox) Then
+                Element = CType(Element, CheckBox)
+                Element.IsChecked = My.Settings.Item(val.Name)
+            ElseIf Element.GetType Is GetType(ComboBox) Then
+                Element = CType(Element, ComboBox)
+                Element.SelectedIndex = My.Settings.Item(val.Name)
+
+            End If
+            Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
+        Next
     End Function
 
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
@@ -162,6 +177,20 @@ Public Class MainWindow
         If runWorker And InSupress Then
             ExitSupress()
         End If
+        For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
+            Dim Element = FindName(val.Name)
+            If Element.GetType Is GetType(TextBox) Then
+                Element = CType(Element, TextBox)
+                My.Settings.Item(val.Name) = Integer.Parse(Element.Text)
+            ElseIf Element.GetType Is GetType(CheckBox) Then
+                Element = CType(Element, CheckBox)
+                My.Settings.Item(val.Name) = Element.IsChecked
+            ElseIf Element.GetType Is GetType(ComboBox) Then
+                Element = CType(Element, ComboBox)
+                My.Settings.Item(val.Name) = Element.SelectedIndex
+            End If
+            Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
+        Next
         My.Settings.Save()
     End Sub
 
