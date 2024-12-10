@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Configuration
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
 
@@ -17,7 +18,9 @@ Public Class MainWindow
         StartMonitor()
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
-        My.Settings.Upgrade()
+        If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
+            My.Settings.Upgrade()
+        End If
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element.GetType Is GetType(TextBox) Then
