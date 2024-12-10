@@ -209,4 +209,15 @@ Public Class MainWindow
     Private Sub NumberValidationTextBox(ByVal sender As TextBox, ByVal e As TextCompositionEventArgs)
         e.Handled = Not Integer.TryParse(e.Text, Nothing)
     End Sub
+
+    Private Sub NumberFormatTextBox(sender As Object, e As TextChangedEventArgs)
+        Dim Box = CType(e.Source, TextBox)
+        If Box.Text.Length = 0 Then
+            Box.Text = 0
+        ElseIf Box.Text.IndexOf(" ") > 0 Then
+            Dim Pos = Box.SelectionStart - 1
+            Box.Text = Box.Text.Replace(" ", "")
+            Box.Select(Pos, 0)
+        End If
+    End Sub
 End Class
