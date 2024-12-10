@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
         FontFamily ="pack://application:,,,/#Xiaolai SC"
-        Title="聚能环 PowerRing 2.1" Height="420
+        Title="聚能环 PowerRing 2.2" Height="420
         " Width="480" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ThemeMode="System" >
     <Grid HorizontalAlignment="Center" Margin="0,0,0,0" Width="480">
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"  VerticalContentAlignment="Center" FontWeight="Bold"/>
