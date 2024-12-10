@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
 
 Public Class MainWindow
@@ -10,6 +11,7 @@ Public Class MainWindow
     Dim SupressCount
 
     Dim Powercfg As PowercfgInterface.Instance
+    Dim dispatcherTimer As DispatcherTimer
 
     Public Async Function PreInit() As Task
         StartMonitor()
@@ -39,9 +41,9 @@ Public Class MainWindow
     Private Function StartMonitor()
         CpuMonitorMode_SelectionChanged(Nothing, Nothing)
         GPUFinder()
-        Dim dispatcherTimer = New Threading.DispatcherTimer()
+        dispatcherTimer = New Threading.DispatcherTimer()
         AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
-        dispatcherTimer.Interval = New TimeSpan(0, 0, 1)
+        dispatcherTimer.Interval = New TimeSpan(0, 0, My.Settings.TickInterval)
         dispatcherTimer.Start()
         Return True
     End Function
@@ -218,6 +220,14 @@ Public Class MainWindow
             Dim Pos = Box.SelectionStart - 1
             Box.Text = Box.Text.Replace(" ", "")
             Box.Select(Pos, 0)
+        End If
+    End Sub
+
+    Private Sub TickInterval_TextChanged(sender As Object, e As TextChangedEventArgs) Handles TickInterval.TextChanged
+        Dim Interval As Integer
+        Dim Success = Integer.TryParse(e.Source.Text, Interval)
+        If Success And Interval > 0 Then
+            dispatcherTimer.Interval = New TimeSpan(0, 0, Interval)
         End If
     End Sub
 End Class

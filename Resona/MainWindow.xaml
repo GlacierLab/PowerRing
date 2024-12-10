@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Resona"
         mc:Ignorable="d"
         FontFamily ="pack://application:,,,/#Xiaolai SC"
-        Title="聚能环 PowerRing 2.1" Height="400" Width="480" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ThemeMode="System" >
+        Title="聚能环 PowerRing 2.1" Height="420
+        " Width="480" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ThemeMode="System" >
     <Grid HorizontalAlignment="Center" Margin="0,0,0,0" Width="480">
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"  VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,15,10,0" VerticalAlignment="Top" ToolTip="红色：CPU压制禁用；黄色：不改变压制状态；绿色：CPU压制可用" FontSize="16" VerticalContentAlignment="Center" />
@@ -25,8 +26,8 @@
         <Label Content="切换阈值(次)" HorizontalAlignment="Left" Margin="11,180,0,0" VerticalAlignment="Top" ToolTip="连续多少次检测时没满足切换要求则切换压制状态" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <TextBox x:Name="BeforeTime" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,180,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
         <Label x:Name="SupressStatus" Content="压制状态：无效" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold" />
-        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="11,332,0,0" VerticalAlignment="Top" Width="380" VerticalContentAlignment="Center" FontSize="14"/>
-        <Button x:Name="RunBtn" Content="启动压制器" Margin="0,281,0,0" VerticalAlignment="Top" Height="43" FontSize="24" FontWeight="Bold" Width="460" HorizontalAlignment="Center"/>
+        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Width="380" VerticalContentAlignment="Center" FontSize="14"/>
+        <Button x:Name="RunBtn" Content="启动压制器" Margin="0,303,0,0" VerticalAlignment="Top" Height="43" FontSize="24" FontWeight="Bold" Width="460" HorizontalAlignment="Center"/>
         <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" Margin="244,178,0,0" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
         <Label Content="压制模式" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="压制时的睿频模式" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <Label Content="解除模式" HorizontalAlignment="Left" Margin="226,212,0,0" VerticalAlignment="Top" ToolTip="解除压制后恢复到的睿频模式" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
@@ -53,7 +54,9 @@
             <Label Content="资源利用率"/>
         </ComboBox>
         <Label Content="指标" HorizontalAlignment="Left" Margin="183,11,0,0" VerticalAlignment="Top" Height="26"  VerticalContentAlignment="Center" RenderTransformOrigin="0.572,-0.106" FontSize="16"/>
-        <Label Content="请禁用一切会改变电源计划的程序，如Process Lasso等" HorizontalAlignment="Left" Margin="9,255,0,0" VerticalAlignment="Top" Width="380" Foreground="Red" VerticalContentAlignment="Center" FontSize="14"/>
+        <Label Content="请禁用一切会改变电源计划的程序，如Process Lasso等" HorizontalAlignment="Left" Margin="8,277,0,0" VerticalAlignment="Top" Width="380" Foreground="Red" VerticalContentAlignment="Center" FontSize="14"/>
+        <Label Content="刷新频率(秒)" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" ToolTip="每隔多少秒刷新一次" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="TickInterval" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox"  Margin="110,243,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
 
     </Grid>
     <Window.Resources>
