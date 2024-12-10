@@ -39,7 +39,7 @@ Public Class Init
         Dim Main As MainWindow = New MainWindow()
         Await Main.PreInit()
         Main.Show()
-        Await Task.Delay(250)
+        Await Task.Delay(50)
         Close()
     End Function
 

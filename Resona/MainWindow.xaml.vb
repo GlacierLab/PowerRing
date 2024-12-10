@@ -50,7 +50,7 @@ Public Class MainWindow
         _computer.IsGpuEnabled = True
         _computer.Open()
         For i As Integer = 0 To _computer.Hardware.Count() - 1
-            If _computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Then
+            If _computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or _computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or _computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
                 CurrentGPU = _computer.Hardware(i)
             End If
         Next
@@ -61,10 +61,10 @@ Public Class MainWindow
                 End If
             Next
             If GPUPowerSensor Is Nothing Then
-                MsgBox("不支持当前显卡，可能是驱动版本过低",, "错误")
+                MsgBox("不支持当前显卡，请确保当前显卡有功耗传感器",, "错误")
             End If
         Else
-            MsgBox("未找到可检测的显卡",, "错误")
+            MsgBox("未找到兼容的显卡",, "错误")
         End If
 
     End Sub
