@@ -23,7 +23,9 @@ Public Class MainWindow
         End If
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
-            If Element.GetType Is GetType(TextBox) Then
+            If Element Is Nothing Then
+                Continue For
+            ElseIf Element.GetType Is GetType(TextBox) Then
                 Element = CType(Element, TextBox)
                 Element.Text = My.Settings.Item(val.Name)
             ElseIf Element.GetType Is GetType(CheckBox) Then
@@ -71,7 +73,7 @@ Public Class MainWindow
         Else
             MsgBox("未找到兼容的显卡",, "错误")
         End If
-
+        GPUName.Text = CurrentGPU.Name
     End Sub
 
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)

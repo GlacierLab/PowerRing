@@ -173,6 +173,42 @@ Namespace My
                 Me("TickInterval") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property GPUSelected() As Boolean
+            Get
+                Return CType(Me("GPUSelected"),Boolean)
+            End Get
+            Set
+                Me("GPUSelected") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property GPUDevice() As String
+            Get
+                Return CType(Me("GPUDevice"),String)
+            End Get
+            Set
+                Me("GPUDevice") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property Sensor() As String
+            Get
+                Return CType(Me("Sensor"),String)
+            End Get
+            Set
+                Me("Sensor") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
