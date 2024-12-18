@@ -187,7 +187,9 @@ Public Class MainWindow
         End If
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
-            If Element.GetType Is GetType(TextBox) Then
+            If Element Is Nothing Then
+                Continue For
+            ElseIf Element.GetType Is GetType(TextBox) Then
                 Element = CType(Element, TextBox)
                 My.Settings.Item(val.Name) = Integer.Parse(Element.Text)
             ElseIf Element.GetType Is GetType(CheckBox) Then
@@ -233,6 +235,15 @@ Public Class MainWindow
         Dim Success = Integer.TryParse(e.Source.Text, Interval)
         If Success And Interval > 0 Then
             dispatcherTimer.Interval = New TimeSpan(0, 0, Interval)
+        End If
+    End Sub
+
+    Private Sub GPUName_MouseDown(sender As Object, e As MouseButtonEventArgs)
+        If MessageBox.Show("是否重新选择显卡和传感器？", "设备选择", MessageBoxButton.YesNo) Then
+            My.Settings.GPUSelected = False
+            Dim NewInit As New Init()
+            NewInit.Show()
+            Close()
         End If
     End Sub
 End Class

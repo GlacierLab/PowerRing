@@ -36,6 +36,14 @@ Public Class Init
     End Sub
 
     Private Async Function LoadMain() As Task
+        If Not My.Settings.GPUSelected Then
+            Status.Content = "正在扫描显卡"
+            Dim SelectWindow As SelectWindow = New SelectWindow()
+            Await SelectWindow.PreInit()
+            SelectWindow.Show()
+            SelectWindow.Show()
+            Close()
+        End If
         Dim Main As MainWindow = New MainWindow()
         Await Main.PreInit()
         Main.Show()
