@@ -160,7 +160,7 @@ Public Class MainWindow
         If SupressCount = BeforeTime.Text Then
             ExitSupress()
             SupressCount = 0
-            Counter.Content = ""
+            Counter.Content = "0"
         Else
             SupressCount += 1
             Counter.Content = SupressCount
@@ -171,7 +171,7 @@ Public Class MainWindow
         If SupressCount = BeforeTime.Text Then
             EnterSupress()
             SupressCount = 0
-            Counter.Content = ""
+            Counter.Content = "0"
         Else
             SupressCount += 1
             Counter.Content = SupressCount
@@ -179,7 +179,7 @@ Public Class MainWindow
     End Sub
     Private Sub ClearCount()
         SupressCount = 0
-        Counter.Content = ""
+        Counter.Content = "0"
     End Sub
 
     Private Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
@@ -190,6 +190,10 @@ Public Class MainWindow
             End If
             RunBtn.Content = "启动压制器"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
+            GPUPower.Foreground = Brushes.Black
+            CPUPercent.Foreground = Brushes.Black
+            Counter.Content = "0"
+            Counter.Foreground = Brushes.Black
         Else
             runWorker = True
             RunBtn.Content = "正在压制，点击停止"
