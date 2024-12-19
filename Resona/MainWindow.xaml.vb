@@ -143,6 +143,9 @@ Public Class MainWindow
             If Not CounterAction Then
                 ClearCount()
             End If
+            If WindowState = WindowState.Minimized Then
+                Title = "C:" + Fix(CPU).ToString() + "% G:" + Fix(GPU).ToString() + "W " + If(InSupress, "压制中", "未压制")
+            End If
         End If
     End Sub
     Private Sub ExitSupress()
