@@ -43,8 +43,15 @@ Public Class Init
             SelectWindow.Show()
         Else
             Dim Main As MainWindow = New MainWindow()
-            Await Main.PreInit()
-            Main.Show()
+            Dim ReturnValue = Await Main.PreInit()
+            If ReturnValue Then
+                Main.Show()
+            Else
+                Status.Content = "正在扫描显卡"
+                Dim SelectWindow As SelectWindow = New SelectWindow()
+                Await SelectWindow.PreInit()
+                SelectWindow.Show()
+            End If
         End If
         Await Task.Delay(50)
         _mutex.Dispose()

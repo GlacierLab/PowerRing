@@ -14,8 +14,11 @@ Public Class MainWindow
     Dim Powercfg As PowercfgInterface.Instance
     Dim dispatcherTimer As DispatcherTimer
 
-    Public Async Function PreInit() As Task
-        StartMonitor()
+    Public Async Function PreInit() As Task(Of Boolean)
+        If Not StartMonitor() Then
+            Close()
+            Return False
+        End If
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
         If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
@@ -38,42 +41,55 @@ Public Class MainWindow
             End If
             Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
         Next
+        Return True
     End Function
 
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
     End Sub
-    Private Function StartMonitor()
+    Private Function StartMonitor() As Boolean
         CpuMonitorMode_SelectionChanged(Nothing, Nothing)
-        GPUFinder()
+        If Not GPUFinder() Then
+            Return False
+        End If
         dispatcherTimer = New Threading.DispatcherTimer()
         AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
         dispatcherTimer.Interval = New TimeSpan(0, 0, My.Settings.TickInterval)
         dispatcherTimer.Start()
         Return True
     End Function
-    Private Sub GPUFinder()
+    Private Function GPUFinder() As Boolean
         Dim _computer = New Computer()
         _computer.IsGpuEnabled = True
         _computer.Open()
         For i As Integer = 0 To _computer.Hardware.Count() - 1
-            If _computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or _computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or _computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
+            If _computer.Hardware(i).Name = My.Settings.GPUDevice Then
                 CurrentGPU = _computer.Hardware(i)
             End If
         Next
         If CurrentGPU IsNot Nothing Then
             For i As Integer = 0 To CurrentGPU.Sensors.length() - 1
-                If CurrentGPU.Sensors(i).SensorType = SensorType.Power Then
+                If CurrentGPU.Sensors(i).Name = My.Settings.Sensor Then
                     GPUPowerSensor = CurrentGPU.Sensors(i)
                 End If
             Next
             If GPUPowerSensor Is Nothing Then
-                MsgBox("不支持当前显卡，请确保当前显卡有功耗传感器",, "错误")
+                Return False
+            Else
+                GPUName.Text = CurrentGPU.Name
+                Return True
             End If
         Else
-            MsgBox("未找到兼容的显卡",, "错误")
+            Return False
         End If
-        GPUName.Text = CurrentGPU.Name
+    End Function
+
+    Private Sub ReselectGPU()
+        My.Settings.GPUSelected = False
+        My.Settings.Save()
+        Dim NewInit As New Init()
+        NewInit.Show()
+        Close()
     End Sub
 
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)
@@ -185,6 +201,9 @@ Public Class MainWindow
         If runWorker And InSupress Then
             ExitSupress()
         End If
+        If GPUPowerSensor Is Nothing Then
+            Return
+        End If
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element Is Nothing Then
@@ -240,10 +259,7 @@ Public Class MainWindow
 
     Private Sub GPUName_MouseDown(sender As Object, e As MouseButtonEventArgs)
         If MessageBox.Show("是否重新选择显卡和传感器？", "设备选择", MessageBoxButton.YesNo) Then
-            My.Settings.GPUSelected = False
-            Dim NewInit As New Init()
-            NewInit.Show()
-            Close()
+            ReselectGPU()
         End If
     End Sub
 End Class
