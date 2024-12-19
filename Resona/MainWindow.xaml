@@ -62,6 +62,9 @@
 
 
     </Grid>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="Taskbar" ProgressValue="100" ProgressState="None"/>
+    </Window.TaskbarItemInfo>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

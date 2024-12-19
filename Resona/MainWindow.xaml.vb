@@ -144,12 +144,14 @@ Public Class MainWindow
         End If
     End Sub
     Private Sub ExitSupress()
+        Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
         InSupress = False
         SupressStatus.Foreground = Brushes.Red
         SupressStatus.Content = "压制状态：无效"
         Powercfg.ChangeBoostModeAndApply(NormalMode.SelectedIndex)
     End Sub
     Private Sub EnterSupress()
+        Taskbar.ProgressState = Shell.TaskbarItemProgressState.Error
         InSupress = True
         SupressStatus.Foreground = Brushes.Green
         SupressStatus.Content = "压制状态：工作"
@@ -162,6 +164,7 @@ Public Class MainWindow
             SupressCount = 0
             Counter.Content = "0"
         Else
+            Taskbar.ProgressState = Shell.TaskbarItemProgressState.Paused
             SupressCount += 1
             Counter.Content = SupressCount
         End If
@@ -173,6 +176,7 @@ Public Class MainWindow
             SupressCount = 0
             Counter.Content = "0"
         Else
+            Taskbar.ProgressState = Shell.TaskbarItemProgressState.Paused
             SupressCount += 1
             Counter.Content = SupressCount
         End If
@@ -184,6 +188,7 @@ Public Class MainWindow
 
     Private Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
         If runWorker Then
+            Taskbar.ProgressState = Shell.TaskbarItemProgressState.None
             runWorker = False
             If InSupress Then
                 ExitSupress()
@@ -195,6 +200,7 @@ Public Class MainWindow
             Counter.Content = "0"
             Counter.Foreground = Brushes.Black
         Else
+            Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
             runWorker = True
             RunBtn.Content = "正在压制，点击停止"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FF86C166"))
