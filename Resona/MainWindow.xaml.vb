@@ -258,7 +258,7 @@ Public Class MainWindow
     End Sub
 
     Private Sub GPUName_MouseDown(sender As Object, e As MouseButtonEventArgs)
-        If MessageBox.Show("是否重新选择显卡和传感器？", "设备选择", MessageBoxButton.YesNo) Then
+        If MessageBox.Show("是否重新选择显卡和传感器？", "设备选择", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
             ReselectGPU()
         End If
     End Sub
