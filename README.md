@@ -41,7 +41,8 @@ https://www.sakya.it/wordpress/enable-disable-cpu-turbo-boost-from-command-line/
 [大藏里想奈(Resona Ookura)](https://zh.moegirl.org.cn/%E5%A4%A7%E8%97%8F%E9%87%8C%E6%83%B3%E5%A5%88):`喜欢玩网游，并在网游中是站在顶峰的人，例如全服务器仅有五把的EX-咖喱棒都被她买断了。（根据露娜的出价，一把至少是200W日元）`
 
 ## 许可
-GPLv3 或 [琴梨梨标准许可](https://zhuanlan.zhihu.com/p/7134329439)  
+GPLv3 或 [琴梨梨通用许可](https://github.com/qinlili23333/QinliliUniversalLicense)  
+本项目的首次发布日期为12/02/2022  
 
 ## 免责声明
 本项目依赖的数据监控需要加载LibreHardwareMonitor的Ring0驱动。虽然在测试中这对游戏反作弊没有影响，但不排除极少数游戏反作弊排异反应的可能性  
