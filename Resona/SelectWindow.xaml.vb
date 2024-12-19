@@ -20,7 +20,7 @@ Public Class SelectWindow
         GPUName.Items.Clear()
         For i As Integer = 0 To GPUList.Count() - 1
             Dim label = New Label With {
-                .Content = GPUList(i).Name
+                .Content = GPUList(i).Name + " (" + GPUList(i).Identifier.ToString() + ")"
             }
             GPUName.Items.Add(label)
         Next
@@ -43,7 +43,7 @@ Public Class SelectWindow
             SensorName.Items.Clear()
             For i As Integer = 0 To SensorList.Count() - 1
                 Dim label = New Label With {
-                    .Content = SensorList(i).Name
+                    .Content = SensorList(i).Name + " (" + SensorList(i).Identifier.ToString() + ")"
                 }
                 SensorName.Items.Add(label)
             Next
@@ -59,7 +59,13 @@ Public Class SelectWindow
     End Sub
 
     Private Sub SaveBtn_Click(sender As Object, e As RoutedEventArgs) Handles SaveBtn.Click
-
+        My.Settings.GPUDevice = GPUList(GPUName.SelectedIndex).Name
+        My.Settings.Sensor = SelectedSensor.Name
+        My.Settings.GPUSelected = True
+        My.Settings.Save()
+        Dim InitWindow = New Init()
+        InitWindow.Show()
+        Close()
     End Sub
 
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)

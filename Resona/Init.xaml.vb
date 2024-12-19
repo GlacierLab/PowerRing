@@ -47,6 +47,7 @@ Public Class Init
             Main.Show()
         End If
         Await Task.Delay(50)
+        _mutex.Dispose()
         Close()
     End Function
 
