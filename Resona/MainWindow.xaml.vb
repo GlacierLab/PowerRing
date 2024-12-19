@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Configuration
+Imports System.Reflection
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
 
@@ -15,6 +16,7 @@ Public Class MainWindow
     Dim dispatcherTimer As DispatcherTimer
 
     Public Async Function PreInit() As Task(Of Boolean)
+        Title = "聚能环 PowerRing " + Assembly.GetEntryAssembly().GetName().Version.ToString()
         If Not StartMonitor() Then
             Close()
             Return False
@@ -270,6 +272,12 @@ Public Class MainWindow
     Private Sub GPUName_MouseDown(sender As Object, e As MouseButtonEventArgs)
         If MessageBox.Show("是否重新选择显卡和传感器？", "设备选择", MessageBoxButton.YesNo) = MessageBoxResult.Yes Then
             ReselectGPU()
+        End If
+    End Sub
+
+    Private Sub MainWindow_StateChanged(sender As Object, e As EventArgs) Handles Me.StateChanged
+        If WindowState = WindowState.Normal Then
+            Title = "聚能环 PowerRing " + Assembly.GetEntryAssembly().GetName().Version.ToString()
         End If
     End Sub
 End Class
