@@ -12,7 +12,7 @@
         <ComboBox x:Name="GPUName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,10,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="正在扫描显卡"/>
         </ComboBox>
-        <Button Content="保存" Margin="334,82,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="SaveBtn" Content="保存" Margin="534,78,0,0" VerticalAlignment="Top" FontSize="16" IsEnabled="False"/>
         <Label Content="传感器" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,49,0,42" Width="57"/>
         <ComboBox x:Name="SensorName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,46,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="请先选择显卡"/>

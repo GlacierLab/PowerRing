@@ -41,12 +41,11 @@ Public Class Init
             Dim SelectWindow As SelectWindow = New SelectWindow()
             Await SelectWindow.PreInit()
             SelectWindow.Show()
-            SelectWindow.Show()
-            Close()
+        Else
+            Dim Main As MainWindow = New MainWindow()
+            Await Main.PreInit()
+            Main.Show()
         End If
-        Dim Main As MainWindow = New MainWindow()
-        Await Main.PreInit()
-        Main.Show()
         Await Task.Delay(50)
         Close()
     End Function
