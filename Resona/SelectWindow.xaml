@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         FontFamily ="pack://application:,,,/#Xiaolai SC"
         Title="选择显卡和传感器" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ThemeMode="System">
-    <Grid Height="117" Width="400">
+    <Grid Height="117" Width="600">
         <Label Content="显卡" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,13,0,78" Width="57"/>
-        <ComboBox x:Name="GPUName" HorizontalAlignment="Left" Width="323" Padding="5,5,5,5"  FontSize="16" Margin="67,10,0,0" VerticalAlignment="Top" SelectedIndex="0">
+        <ComboBox x:Name="GPUName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,10,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="正在扫描显卡"/>
         </ComboBox>
         <Button Content="保存" Margin="334,82,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="传感器" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,49,0,42" Width="57"/>
-        <ComboBox x:Name="SensorName" HorizontalAlignment="Left" Width="323" Padding="5,5,5,5"  FontSize="16" Margin="67,46,0,0" VerticalAlignment="Top" SelectedIndex="0">
+        <ComboBox x:Name="SensorName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,46,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="请先选择显卡"/>
         </ComboBox>
         <Label x:Name="SensorValue" Content="传感器读数: 请先选择传感器" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" FontSize="14" Width="324"/>
