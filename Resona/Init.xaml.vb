@@ -1,4 +1,5 @@
-﻿Imports System.Threading
+﻿Imports System.Configuration
+Imports System.Threading
 
 Public Class Init
 
@@ -36,6 +37,9 @@ Public Class Init
     End Sub
 
     Private Async Function LoadMain() As Task
+        If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
+            My.Settings.Upgrade()
+        End If
         If Not My.Settings.GPUSelected Then
             Status.Content = "正在扫描显卡"
             Dim SelectWindow As SelectWindow = New SelectWindow()

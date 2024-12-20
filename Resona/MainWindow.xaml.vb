@@ -23,9 +23,6 @@ Public Class MainWindow
         End If
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
-        If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
-            My.Settings.Upgrade()
-        End If
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element Is Nothing Then
