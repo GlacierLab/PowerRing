@@ -187,6 +187,7 @@ Public Class MainWindow
         End If
     End Sub
     Private Sub ClearCount()
+        Taskbar.ProgressState = If(InSupress, Shell.TaskbarItemProgressState.Error, Shell.TaskbarItemProgressState.Normal)
         SupressCount = 0
         Counter.Content = "0"
     End Sub
