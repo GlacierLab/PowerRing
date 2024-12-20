@@ -1,5 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports System.Configuration
 Imports System.Reflection
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
@@ -237,8 +236,9 @@ Public Class MainWindow
     End Sub
 
     Private Sub Github_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Github.MouseDown
-        Dim startInfo As New ProcessStartInfo("https://github.com/GlacierLab/PowerRing")
-        startInfo.UseShellExecute = True
+        Dim startInfo As New ProcessStartInfo("https://github.com/GlacierLab/PowerRing") With {
+            .UseShellExecute = True
+        }
         Process.Start(startInfo)
     End Sub
 

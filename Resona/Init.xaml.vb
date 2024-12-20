@@ -42,7 +42,7 @@ Public Class Init
         End If
         If Not My.Settings.GPUSelected Then
             Status.Content = "正在扫描显卡"
-            Dim SelectWindow As SelectWindow = New SelectWindow()
+            Dim SelectWindow As New SelectWindow()
             Await SelectWindow.PreInit()
             SelectWindow.Show()
         Else
@@ -52,7 +52,7 @@ Public Class Init
                 Main.Show()
             Else
                 Status.Content = "正在扫描显卡"
-                Dim SelectWindow As SelectWindow = New SelectWindow()
+                Dim SelectWindow As New SelectWindow()
                 Await SelectWindow.PreInit()
                 SelectWindow.Show()
             End If

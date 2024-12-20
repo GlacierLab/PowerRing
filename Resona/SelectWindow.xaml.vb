@@ -7,16 +7,17 @@ Public Class SelectWindow
     Private SensorList = New List(Of ISensor)
     Private SelectedSensor As ISensor
     Public Async Function PreInit() As Task
-        Await Task.Run(Async Function()
-                           Dim _computer = New Computer()
-                           _computer.IsGpuEnabled = True
+        Await Task.Run(Sub()
+                           Dim _computer = New Computer With {
+                               .IsGpuEnabled = True
+                           }
                            _computer.Open()
                            For i As Integer = 0 To _computer.Hardware.Count() - 1
                                If _computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or _computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or _computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
                                    GPUList.Add(_computer.Hardware(i))
                                End If
                            Next
-                       End Function)
+                       End Sub)
         GPUName.Items.Clear()
         For i As Integer = 0 To GPUList.Count() - 1
             Dim label = New Label With {
