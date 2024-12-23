@@ -14,6 +14,8 @@ Public Class MainWindow
     Dim Powercfg As PowercfgInterface.Instance
     Dim dispatcherTimer As DispatcherTimer
 
+    Dim _computer As Computer
+
     Public Async Function PreInit() As Task(Of Boolean)
         Title = "聚能环 PowerRing " + Assembly.GetEntryAssembly().GetName().Version.ToString()
         If Not StartMonitor() Then
@@ -57,8 +59,9 @@ Public Class MainWindow
         Return True
     End Function
     Private Function GPUFinder() As Boolean
-        Dim _computer = New Computer()
-        _computer.IsGpuEnabled = True
+        _computer = New Computer With {
+            .IsGpuEnabled = True
+        }
         _computer.Open()
         For i As Integer = 0 To _computer.Hardware.Count() - 1
             If _computer.Hardware(i).Name = My.Settings.GPUDevice Then
@@ -210,12 +213,13 @@ Public Class MainWindow
     End Sub
 
     Private Sub MainWindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If runWorker And InSupress Then
-            ExitSupress()
-        End If
         If GPUPowerSensor Is Nothing Then
             Return
         End If
+        If runWorker And InSupress Then
+            ExitSupress()
+        End If
+        _computer.Close()
         For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element Is Nothing Then

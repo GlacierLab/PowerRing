@@ -6,9 +6,10 @@ Public Class SelectWindow
     Private GPUList = New List(Of IHardware)
     Private SensorList = New List(Of ISensor)
     Private SelectedSensor As ISensor
+    Private _computer As Computer
     Public Async Function PreInit() As Task
         Await Task.Run(Sub()
-                           Dim _computer = New Computer With {
+                           _computer = New Computer With {
                                .IsGpuEnabled = True
                            }
                            _computer.Open()
@@ -64,6 +65,7 @@ Public Class SelectWindow
         My.Settings.Sensor = SelectedSensor.Name
         My.Settings.GPUSelected = True
         My.Settings.Save()
+        _computer.Close()
         Dim InitWindow = New Init()
         InitWindow.Show()
         Close()
