@@ -190,11 +190,11 @@ Public Class MainWindow
 
     Private Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
         If runWorker Then
-            Taskbar.ProgressState = Shell.TaskbarItemProgressState.None
             runWorker = False
             If InSupress Then
                 ExitSupress()
             End If
+            Taskbar.ProgressState = Shell.TaskbarItemProgressState.None
             RunBtn.Content = "启动压制器"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFAD689"))
             GPUPower.Foreground = Brushes.Black
