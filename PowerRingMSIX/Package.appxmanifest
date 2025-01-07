@@ -10,7 +10,7 @@
   <Identity
     Name="82596253-e8b8-4666-89f7-79ed44cb7d9c"
     Publisher="CN=QINLILI"
-    Version="2.3.3.0" />
+    Version="2.3.4.0" />
 
   <Properties>
     <DisplayName>PowerRing</DisplayName>

@@ -1,6 +1,10 @@
-﻿Imports System.Windows.Threading
+﻿Imports System.Threading
+Imports System.Windows.Threading
 
 Class Application
+
+    Public Shared _mutex As Mutex = Nothing
+
     Private Sub Application_DispatcherUnhandledException(sender As Object, e As DispatcherUnhandledExceptionEventArgs) Handles Me.DispatcherUnhandledException
 
         MessageBox.Show("聚能环遇到无法处理的错误，即将在浏览器内打开GitHub提交错误")

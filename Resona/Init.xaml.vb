@@ -3,11 +3,11 @@ Imports System.Threading
 
 Public Class Init
 
-    Private Shared _mutex As Mutex = Nothing
 
     Private Async Sub Init_ContentRendered(sender As Object, e As EventArgs) Handles Me.ContentRendered
+        Application._mutex?.Dispose()
         Dim createdNew As Boolean
-        _mutex = New Mutex(True, "ProjectResona_PowerRing", createdNew)
+        Application._mutex = New Mutex(True, "ProjectResona_PowerRing", createdNew)
         If Not createdNew Then
             Status.Content = "无法同时运行多个实例" + Environment.NewLine + "点击继续并关闭其他实例"
             Status.Foreground = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFF0000"))
@@ -30,7 +30,6 @@ Public Class Init
                 End If
             Next
         End If
-        _mutex.Dispose()
         Dim NewInit As New Init()
         NewInit.Show()
         Close()
@@ -58,7 +57,6 @@ Public Class Init
             End If
         End If
         Await Task.Delay(50)
-        _mutex.Dispose()
         Close()
     End Function
 
