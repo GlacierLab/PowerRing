@@ -70,7 +70,7 @@ Public Class MainWindow
         Next
         If CurrentGPU IsNot Nothing Then
             For i As Integer = 0 To CurrentGPU.Sensors.length() - 1
-                If CurrentGPU.Sensors(i).Name = My.Settings.Sensor Then
+                If CurrentGPU.Sensors(i).Identifier.ToString() = My.Settings.Sensor Then
                     GPUPowerSensor = CurrentGPU.Sensors(i)
                 End If
             Next

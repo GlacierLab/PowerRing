@@ -38,8 +38,9 @@ Public Class SelectWindow
             SensorList = New List(Of ISensor)
             Dim GPU = GPUList(GPUName.SelectedIndex)
             SensorName.Items.Clear()
+            GPU.Update()
             For i As Integer = 0 To GPU.Sensors.length() - 1
-                If GPU.Sensors(i).SensorType = SensorType.Power Then
+                If GPU.Sensors(i).SensorType = SensorType.Power Or GPU.Sensors(i).SensorType = SensorType.Load Then
                     SensorList.Add(GPU.Sensors(i))
                 End If
             Next
@@ -53,7 +54,7 @@ Public Class SelectWindow
             Else
                 For i As Integer = 0 To SensorList.Count() - 1
                     Dim label = New Label With {
-                        .Content = SensorList(i).Name + " (" + SensorList(i).Identifier.ToString() + ")"
+                        .Content = GetSensorTitle(SensorList(i))
                     }
                     SensorName.Items.Add(label)
                 Next
@@ -72,7 +73,7 @@ Public Class SelectWindow
 
     Private Sub SaveBtn_Click(sender As Object, e As RoutedEventArgs) Handles SaveBtn.Click
         My.Settings.GPUDevice = GPUList(GPUName.SelectedIndex).Name
-        My.Settings.Sensor = SelectedSensor.Name
+        My.Settings.Sensor = SelectedSensor.Identifier.ToString()
         My.Settings.GPUSelected = True
         My.Settings.Save()
         _computer.Close()
@@ -87,4 +88,8 @@ Public Class SelectWindow
             SensorValue.Content = "传感器读数: " + Math.Round(CDbl(SelectedSensor.Value()), 3).ToString() + "W"
         End If
     End Sub
+
+    Private Function GetSensorTitle(sensor As ISensor) As String
+        Return sensor.SensorType.ToString() + " - " + sensor.Name + " (" + sensor.Identifier.ToString().Replace(sensor.Hardware.Identifier.ToString(), "") + ")"
+    End Function
 End Class
