@@ -37,19 +37,29 @@ Public Class SelectWindow
         If GPUName.SelectedIndex > -1 And GPUList.Count() > 0 Then
             SensorList = New List(Of ISensor)
             Dim GPU = GPUList(GPUName.SelectedIndex)
+            SensorName.Items.Clear()
             For i As Integer = 0 To GPU.Sensors.length() - 1
                 If GPU.Sensors(i).SensorType = SensorType.Power Then
                     SensorList.Add(GPU.Sensors(i))
                 End If
             Next
-            SensorName.Items.Clear()
-            For i As Integer = 0 To SensorList.Count() - 1
+            If SensorList.Count() = 0 Then
                 Dim label = New Label With {
-                    .Content = SensorList(i).Name + " (" + SensorList(i).Identifier.ToString() + ")"
+                    .Content = "未找到传感器，可能需要管理员权限"
                 }
                 SensorName.Items.Add(label)
-            Next
-            SensorName.SelectedIndex = 0
+                SensorName.SelectedIndex = 0
+                SaveBtn.IsEnabled = False
+            Else
+                For i As Integer = 0 To SensorList.Count() - 1
+                    Dim label = New Label With {
+                        .Content = SensorList(i).Name + " (" + SensorList(i).Identifier.ToString() + ")"
+                    }
+                    SensorName.Items.Add(label)
+                Next
+                SensorName.SelectedIndex = 0
+                SensorName.IsEnabled = True
+            End If
         End If
     End Sub
 
