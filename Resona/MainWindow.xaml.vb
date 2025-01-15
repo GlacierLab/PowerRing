@@ -77,7 +77,7 @@ Public Class MainWindow
             If GPUPowerSensor Is Nothing Then
                 Return False
             Else
-                GPUName.Text = CurrentGPU.Name
+                GPUName.Text = CurrentGPU.Name + " - " + GPUPowerSensor.Name
                 Return True
             End If
         Else
@@ -98,7 +98,7 @@ Public Class MainWindow
         CPUPercent.Content = CPU.ToString() + "%"
         CurrentGPU.Update()
         Dim GPU = Math.Round(CDbl(GPUPowerSensor.Value()), 1)
-        GPUPower.Content = GPU.ToString() + "W"
+        GPUPower.Content = GPU.ToString() + If(GPUPowerSensor.SensorType = SensorType.Load, "%", "W")
         Dim canSupress = False
         If runWorker Then
             If CPU > CPUHigh.Text Then

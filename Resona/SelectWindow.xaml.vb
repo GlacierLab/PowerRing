@@ -85,7 +85,7 @@ Public Class SelectWindow
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)
         If SelectedSensor IsNot Nothing Then
             GPUList(GPUName.SelectedIndex).Update()
-            SensorValue.Content = "传感器读数: " + Math.Round(CDbl(SelectedSensor.Value()), 3).ToString() + "W"
+            SensorValue.Content = "传感器读数: " + Math.Round(CDbl(SelectedSensor.Value()), 3).ToString() + If(SelectedSensor.SensorType = SensorType.Load, "%", "W")
         End If
     End Sub
 
