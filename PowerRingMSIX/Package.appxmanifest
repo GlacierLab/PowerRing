@@ -8,13 +8,13 @@
   IgnorableNamespaces="uap rescap uap18">
 
   <Identity
-    Name="82596253-e8b8-4666-89f7-79ed44cb7d9c"
-    Publisher="CN=QINLILI"
+    Name="61595QINLILITECH.4563681F1C236"
+    Publisher="CN=C9DCE025-8575-4685-9AB7-EC5D7670941B"
     Version="2.3.4.0" />
 
   <Properties>
-    <DisplayName>PowerRing</DisplayName>
-    <PublisherDisplayName>琴梨梨</PublisherDisplayName>
+    <DisplayName>聚能环 PowerRing</DisplayName>
+    <PublisherDisplayName>QINLILI TECH</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -46,6 +46,5 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <rescap:Capability Name="allowElevation"/>
   </Capabilities>
 </Package>
