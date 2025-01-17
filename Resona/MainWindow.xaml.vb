@@ -41,6 +41,9 @@ Public Class MainWindow
             End If
             Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
         Next
+        If My.Settings.SupressOnLaunch Then
+            RunBtn_Click(Nothing, Nothing)
+        End If
         Return True
     End Function
 

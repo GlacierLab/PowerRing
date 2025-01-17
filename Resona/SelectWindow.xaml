@@ -7,17 +7,19 @@
         mc:Ignorable="d"
         FontFamily ="pack://application:,,,/#Xiaolai SC"
         Title="选择显卡和传感器" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ThemeMode="System">
-    <Grid Height="117" Width="600">
-        <Label Content="显卡" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,13,0,78" Width="57"/>
+    <Grid Height="150" Width="600">
+        <Label Content="显卡" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,13,0,78" Width="57" VerticalAlignment="Top"/>
         <ComboBox x:Name="GPUName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,10,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="正在扫描显卡"/>
         </ComboBox>
-        <Button x:Name="SaveBtn" Content="保存" Margin="534,78,0,0" VerticalAlignment="Top" FontSize="16" IsEnabled="False"/>
-        <Label Content="传感器" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,49,0,42" Width="57"/>
+        <Button x:Name="SaveBtn" Content="保存" Margin="534,108,0,0" VerticalAlignment="Top" FontSize="16" IsEnabled="False"/>
+        <Label Content="传感器" HorizontalAlignment="Left" Height="26"  VerticalContentAlignment="Center" FontSize="16" Margin="10,49,0,42" Width="57" VerticalAlignment="Top"/>
         <ComboBox x:Name="SensorName" HorizontalAlignment="Left" Width="523" Padding="5,5,5,5"  FontSize="16" Margin="67,46,0,0" VerticalAlignment="Top" SelectedIndex="0">
             <Label Content="请先选择显卡"/>
         </ComboBox>
         <Label x:Name="SensorValue" Content="传感器读数: 请先选择传感器" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" FontSize="14" Width="324"/>
+        <CheckBox x:Name="SupressOnLaunch" Content="启动后自动压制" Margin="10,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"  Height="26" FontSize="16" Width="179" Padding="5,0,5,0"/>
+        <CheckBox x:Name="LaunchAsAdmin" Content="以管理员身份启动" Margin="194,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26"  FontSize="16" Width="179" Padding="5,0,5,0"/>
 
     </Grid>
 

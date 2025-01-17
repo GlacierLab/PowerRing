@@ -209,6 +209,30 @@ Namespace My
                 Me("Sensor") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property SupressOnLaunch() As Boolean
+            Get
+                Return CType(Me("SupressOnLaunch"),Boolean)
+            End Get
+            Set
+                Me("SupressOnLaunch") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property LaunchAsAdmin() As Boolean
+            Get
+                Return CType(Me("LaunchAsAdmin"),Boolean)
+            End Get
+            Set
+                Me("LaunchAsAdmin") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

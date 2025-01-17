@@ -31,6 +31,8 @@ Public Class SelectWindow
         AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
         dispatcherTimer.Interval = New TimeSpan(0, 0, 1)
         dispatcherTimer.Start()
+        SupressOnLaunch.IsChecked = My.Settings.SupressOnLaunch
+        LaunchAsAdmin.IsChecked = My.Settings.LaunchAsAdmin
     End Function
 
     Private Sub GPUName_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles GPUName.SelectionChanged
@@ -76,6 +78,8 @@ Public Class SelectWindow
         My.Settings.Sensor = SelectedSensor.Identifier.ToString()
         My.Settings.GPUSelected = True
         My.Settings.Save()
+        My.Settings.SupressOnLaunch = SupressOnLaunch.IsChecked
+        My.Settings.LaunchAsAdmin = LaunchAsAdmin.IsChecked
         _computer.Close()
         Dim InitWindow = New Init()
         InitWindow.Show()
