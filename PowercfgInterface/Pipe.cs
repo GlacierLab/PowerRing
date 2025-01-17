@@ -32,7 +32,7 @@ namespace PowercfgInterface
             return output;
         }
 
-        public async static Task<string?> RunAsync(string command, string[] args)
+        public static async Task<string?> RunAsync(string command, string[] args)
         {
             string? output = await Task.Run(() =>
             {

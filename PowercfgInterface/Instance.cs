@@ -7,12 +7,12 @@ namespace PowercfgInterface
         public string? ActiveProfile = null;
 
         [DllImport(@"kernel32.dll")]
-        extern private static bool GetSystemPowerStatus(out PowerStatus BatteryInfo);
+        private static extern bool GetSystemPowerStatus(out PowerStatus BatteryInfo);
 
 
         public Instance()
         {
-            
+
         }
 
 

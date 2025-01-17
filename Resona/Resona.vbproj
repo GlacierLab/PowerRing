@@ -11,6 +11,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Version>2.4.0</Version>
     <ApplicationIcon>Resona.ico</ApplicationIcon>
+    <Configurations>Debug;Release;ReleaseMSIX</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -20,8 +21,20 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='ReleaseMSIX'">
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMSIX|x64'">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <DefineDebug>false</DefineDebug>
