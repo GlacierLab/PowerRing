@@ -18,8 +18,8 @@
             <Label Content="请先选择显卡"/>
         </ComboBox>
         <Label x:Name="SensorValue" Content="传感器读数: 请先选择传感器" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" FontSize="14" Width="324"/>
-        <CheckBox x:Name="SupressOnLaunch" Content="启动后自动压制" Margin="10,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"  Height="26" FontSize="16" Width="179" Padding="5,0,5,0"/>
-        <CheckBox x:Name="LaunchAsAdmin" Content="以管理员身份启动" Margin="194,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26"  FontSize="16" Width="179" Padding="5,0,5,0"/>
+        <CheckBox x:Name="SupressOnLaunch" Content="启动后自动压制" ToolTip="进入主界面后自动启动压制器" Margin="10,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"  Height="26" FontSize="16" Width="179" Padding="5,0,5,0"/>
+        <CheckBox x:Name="LaunchAsAdmin" Content="以管理员身份启动" ToolTip="可以解决部分传感器扫描不到的问题" Margin="194,107,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26"  FontSize="16" Width="179" Padding="5,0,5,0"/>
 
     </Grid>
 
