@@ -150,18 +150,28 @@ Public Class MainWindow
             End If
         End If
     End Sub
-    Private Sub ExitSupress()
+    Private Async Sub ExitSupress()
         Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
         InSupress = False
         SupressStatus.Foreground = Brushes.Red
         SupressStatus.Content = "压制状态：无效"
+        If DetectPlanChange.IsChecked Then
+            If Await Powercfg.IsProfileChanged() And runWorker Then
+                DetectPlanChange.Foreground = Brushes.Red
+            End If
+        End If
         Powercfg.ChangeBoostModeAndApply(NormalMode.SelectedIndex)
     End Sub
-    Private Sub EnterSupress()
+    Private Async Sub EnterSupress()
         Taskbar.ProgressState = Shell.TaskbarItemProgressState.Error
         InSupress = True
         SupressStatus.Foreground = Brushes.Green
         SupressStatus.Content = "压制状态：工作"
+        If DetectPlanChange.IsChecked Then
+            If Await Powercfg.IsProfileChanged() And runWorker Then
+                DetectPlanChange.Foreground = Brushes.Red
+            End If
+        End If
         Powercfg.ChangeBoostModeAndApply(SupressMode.SelectedIndex)
     End Sub
     Private Sub CountExit()
@@ -207,11 +217,15 @@ Public Class MainWindow
             CPUPercent.Foreground = Brushes.Black
             Counter.Content = "0"
             Counter.Foreground = Brushes.Black
+            DetectPlanChange.Foreground = Brushes.Black
         Else
             Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
             runWorker = True
             RunBtn.Content = "正在压制，点击停止"
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FF86C166"))
+            If DetectPlanChange.IsChecked Then
+                DetectPlanChange.Foreground = Brushes.Green
+            End If
         End If
     End Sub
 

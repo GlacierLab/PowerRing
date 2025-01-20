@@ -53,12 +53,12 @@
             <Label Content="资源利用率"/>
         </ComboBox>
         <Label Content="指标" HorizontalAlignment="Left" Margin="183,11,0,0" VerticalAlignment="Top" Height="26"  VerticalContentAlignment="Center" RenderTransformOrigin="0.572,-0.106" FontSize="16"/>
-        <Label Content="请禁用一切会改变电源计划的程序，如Process Lasso等" HorizontalAlignment="Left" Margin="8,277,0,0" VerticalAlignment="Top" Width="380" Foreground="Red" VerticalContentAlignment="Center" FontSize="14"/>
         <Label Content="刷新频率(秒)" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" ToolTip="每隔多少秒刷新一次" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <TextBox x:Name="TickInterval" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox"  Margin="110,243,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
         <Label   HorizontalAlignment="Left" Margin="140,72,0,0" VerticalAlignment="Top" Height="32" MaxHeight="32" Width="173" VerticalContentAlignment="Center" MouseDown="GPUName_MouseDown">
             <TextBlock x:Name="GPUName" TextWrapping="Wrap"/>
         </Label>
+        <CheckBox x:Name="DetectPlanChange" Content="检测电源计划变化" Margin="244,238,0,0" ToolTip="选中后每次调整压制状态都会更新当前电源计划，并表现为本选项颜色，红色代表电源计划发生过变化，启用此选项以保持与其他调整电源计划的工具的相容性，但可能会导致你的电源计划变得一团糟，后果自负" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
 
 
     </Grid>
