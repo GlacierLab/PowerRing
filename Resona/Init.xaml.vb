@@ -4,10 +4,6 @@ Imports System.Threading
 
 Public Class Init
     Public Sub New()
-        If Command() = "--runas=admin" Then
-            My.Settings.LaunchAsAdmin = True
-            My.Settings.Save()
-        End If
         If My.Settings.LaunchAsAdmin And Not IsAdministrator() Then
             Dim info As New ProcessStartInfo(System.Environment.ProcessPath, "--runas=admin") With {
                     .UseShellExecute = True,
@@ -40,7 +36,7 @@ Public Class Init
         Dim Proc = Process.GetProcessesByName("Resona")
         If Proc.Length > 0 Then
             For Each Pro In Proc
-                If Not Pro.Id Like Environment.ProcessId Then
+                If Not Pro.Id Like Process.GetCurrentProcess().Id Then
                     Pro.Kill()
                 End If
             Next
