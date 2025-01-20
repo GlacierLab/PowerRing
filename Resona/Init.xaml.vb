@@ -40,7 +40,7 @@ Public Class Init
         Dim Proc = Process.GetProcessesByName("Resona")
         If Proc.Length > 0 Then
             For Each Pro In Proc
-                If Not Pro.Id Like Process.GetCurrentProcess().Id Then
+                If Not Pro.Id Like Environment.ProcessId Then
                     Pro.Kill()
                 End If
             Next
