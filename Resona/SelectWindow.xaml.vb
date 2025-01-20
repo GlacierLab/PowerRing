@@ -111,7 +111,7 @@ Public Class SelectWindow
     Private Shared Function GetCurrentPackageFullName(ByRef packageFullNameLength As Integer, ByVal packageFullName As StringBuilder) As Integer
     End Function
 
-    Public Function IsRunningAsUwp() As Boolean
+    Public Shared Function IsRunningAsUwp() As Boolean
         Dim length As Integer = 0
         Dim sb As StringBuilder = New StringBuilder(0)
         Dim result As Integer = GetCurrentPackageFullName(length, sb)

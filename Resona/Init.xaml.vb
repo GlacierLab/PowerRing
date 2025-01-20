@@ -1,8 +1,24 @@
 ﻿Imports System.Configuration
+Imports System.Security.Principal
 Imports System.Threading
 
 Public Class Init
-
+    Public Sub New()
+        If Command() = "--runas=admin" Then
+            My.Settings.LaunchAsAdmin = True
+            My.Settings.Save()
+        End If
+        If My.Settings.LaunchAsAdmin And Not IsAdministrator() Then
+            Dim info As New ProcessStartInfo(System.Environment.ProcessPath, "--runas=admin") With {
+                    .UseShellExecute = True,
+                    .Verb = "runas"
+                }
+            Process.Start(info)
+            Environment.Exit(0)
+        Else
+            InitializeComponent()
+        End If
+    End Sub
 
     Private Async Sub Init_ContentRendered(sender As Object, e As EventArgs) Handles Me.ContentRendered
         Application._mutex?.Dispose()
@@ -18,7 +34,6 @@ Public Class Init
         Else
             Await LoadMain()
         End If
-
     End Sub
 
     Private Sub KillAndReload(sender As Object, e As MouseButtonEventArgs)
@@ -58,6 +73,10 @@ Public Class Init
         End If
         Await Task.Delay(50)
         Close()
+    End Function
+
+    Public Shared Function IsAdministrator() As Boolean
+        Return (New WindowsPrincipal(WindowsIdentity.GetCurrent())).IsInRole(WindowsBuiltInRole.Administrator)
     End Function
 
 End Class
