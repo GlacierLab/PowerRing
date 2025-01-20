@@ -59,6 +59,7 @@
             <TextBlock x:Name="GPUName" TextWrapping="Wrap"/>
         </Label>
         <CheckBox x:Name="DetectPlanChange" Content="检测电源计划变化" Margin="244,238,0,0" ToolTip="选中后每次调整压制状态都会更新当前电源计划，并表现为本选项颜色，红色代表电源计划发生过变化，启用此选项以保持与其他调整电源计划的工具的相容性，但可能会导致你的电源计划变得一团糟，后果自负" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
+        <Button x:Name="ApplyMode" Content="应用" Margin="420,207,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,5,5,5"/>
 
 
     </Grid>

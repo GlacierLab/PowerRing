@@ -302,4 +302,8 @@ Public Class MainWindow
             Title = "聚能环 PowerRing " + Assembly.GetEntryAssembly().GetName().Version.ToString()
         End If
     End Sub
+
+    Private Sub ApplyMode_Click(sender As Object, e As RoutedEventArgs) Handles ApplyMode.Click
+        Powercfg.ChangeBoostModeAndApply(NormalMode.SelectedIndex)
+    End Sub
 End Class
