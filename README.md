@@ -1,6 +1,7 @@
 # 聚能环PowerRing 2.x
 聚能环？！让有限的供电功率换取更好的游戏性能！  
 针对显卡瓶颈的游戏提高20%甚至更高的帧率  
+[![](https://get.microsoft.com/images/en-us%20dark.svg)](https://apps.microsoft.com/detail/9N8BLRHH6JTV?mode=direct)  
 
 ## 工作逻辑
 根据`刷新频率`自动持续监测  
