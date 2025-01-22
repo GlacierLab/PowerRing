@@ -41,3 +41,4 @@ arr.forEach(item => {
 });
 result = result.sort();
 console.log("Result: " + result.join(""));
+fs.writeFileSync("XiaolaiSC.txt", result.join(""));

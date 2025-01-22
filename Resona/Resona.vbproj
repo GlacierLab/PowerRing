@@ -97,4 +97,8 @@
     <PublishReadyToRunExclude Include="System.IO.Ports.dll" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd ..&#xD;&#xA;node PrepareFontGenerator.js&#xD;&#xA;.\fontsubset-console.exe -c .\ XiaolaiSC.ttf Resona\XiaolaiSC.ttf&#xD;&#xA;cd Resona" />
+  </Target>
+
 </Project>

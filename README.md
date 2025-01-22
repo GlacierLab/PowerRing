@@ -36,6 +36,7 @@ MSIX版本体积较大，不支持管理员启动模式，但不需要安装运�
 [.NET](https://github.com/dotnet)  
 [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)  
 [小赖字体](https://github.com/lxgw/kose-font)  
+[fontsubset](https://github.com/821869798/fontsubset) 本项目的构建流程包含了一份该项目的执行程序  
 
 ## 致谢
 https://www.sakya.it/wordpress/enable-disable-cpu-turbo-boost-from-command-line/  
