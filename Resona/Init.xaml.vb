@@ -1,4 +1,5 @@
 ﻿Imports System.Configuration
+Imports System.IO
 Imports System.Security.Principal
 Imports System.Threading
 
@@ -48,7 +49,15 @@ Public Class Init
 
     Private Async Function LoadMain() As Task
         If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
+            Status.Content = "正在导入旧版配置"
             My.Settings.Upgrade()
+            Dim CurrentConf = Path.GetDirectoryName(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath)
+            Dim ConfPath = Directory.GetParent(CurrentConf)
+            For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
+                If Not Dir.ToString() = CurrentConf Then
+                    Dir.Delete(True)
+                End If
+            Next
         End If
         If Not My.Settings.GPUSelected Then
             Status.Content = "正在扫描显卡"
