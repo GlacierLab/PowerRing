@@ -10,7 +10,7 @@
   <Identity
     Name="61595QINLILITECH.4563681F1C236"
     Publisher="CN=C9DCE025-8575-4685-9AB7-EC5D7670941B"
-    Version="2.4.0.0" />
+    Version="2.4.1.0" />
 
   <Properties>
     <DisplayName>聚能环 PowerRing</DisplayName>
