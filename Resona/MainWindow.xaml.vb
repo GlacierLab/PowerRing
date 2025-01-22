@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Configuration
 Imports System.Reflection
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
@@ -311,5 +312,13 @@ Public Class MainWindow
 
     Private Sub ApplyMode_Click(sender As Object, e As RoutedEventArgs) Handles ApplyMode.Click
         Powercfg.ChangeBoostModeAndApply(NormalMode.SelectedIndex)
+    End Sub
+
+    Private Sub ConfDir_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles ConfDir.MouseDown
+        Process.Start(New System.Diagnostics.ProcessStartInfo() With {
+            .FileName = IO.Path.GetDirectoryName(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath),
+            .UseShellExecute = True,
+            .Verb = "open"
+        })
     End Sub
 End Class

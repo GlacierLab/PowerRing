@@ -25,7 +25,7 @@
         <Label Content="切换阈值(次)" HorizontalAlignment="Left" Margin="11,180,0,0" VerticalAlignment="Top" ToolTip="连续多少次检测时没满足切换要求则切换压制状态" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <TextBox x:Name="BeforeTime" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,180,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
         <Label x:Name="SupressStatus" Content="压制状态：无效" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold" />
-        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Width="380" VerticalContentAlignment="Center" FontSize="14"/>
+        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Width="230" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" Cursor="Hand"/>
         <Button x:Name="RunBtn" Content="启动压制器" Margin="0,303,0,0" VerticalAlignment="Top" Height="43" FontSize="24" FontWeight="Bold" Width="460" HorizontalAlignment="Center"/>
         <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" Margin="244,178,0,0" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
         <Label Content="压制模式" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="压制时的睿频模式" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
@@ -60,6 +60,7 @@
         </Label>
         <CheckBox x:Name="DetectPlanChange" Content="检测电源计划变化" Margin="244,238,0,0" ToolTip="选中后每次调整压制状态都会更新当前电源计划，并表现为本选项颜色，红色代表电源计划发生过变化，启用此选项以保持与其他调整电源计划的工具的相容性，但可能会导致你的电源计划变得一团糟，后果自负" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
         <Button x:Name="ApplyMode" Content="应用" Margin="420,207,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,5,5,5"/>
+        <Label x:Name="ConfDir" Content="打开配置目录" HorizontalAlignment="Left" Margin="355,354,0,0" VerticalAlignment="Top" Width="115" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" HorizontalContentAlignment="Right" Cursor="Hand"/>
 
 
     </Grid>
