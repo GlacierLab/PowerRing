@@ -282,6 +282,11 @@ Public Class MainWindow
             Box.Text = Box.Text.Replace(" ", "")
             Box.Select(Pos, 0)
         End If
+        If (Box Is GPUHigh Or Box Is GPULow) And GPUPowerSensor.SensorType = SensorType.Load Then
+            If Box.Text > 99 Then
+                Box.Text = 99
+            End If
+        End If
     End Sub
 
     Private Sub TickInterval_TextChanged(sender As Object, e As TextChangedEventArgs) Handles TickInterval.TextChanged
