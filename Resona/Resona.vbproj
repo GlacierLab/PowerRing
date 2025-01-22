@@ -9,7 +9,7 @@
     <Copyright>琴梨梨 2024 OpenSource GPLv3</Copyright>
     <Platforms>x64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>2.4.0</Version>
+    <Version>2.4.1</Version>
     <ApplicationIcon>Resona.ico</ApplicationIcon>
     <Configurations>Debug;Release;ReleaseMSIX</Configurations>
   </PropertyGroup>
