@@ -52,12 +52,14 @@ Public Class Init
             Status.Content = "正在导入旧版配置"
             My.Settings.Upgrade()
             Dim CurrentConf = Path.GetDirectoryName(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath)
-            Dim ConfPath = Directory.GetParent(CurrentConf)
-            For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
-                If Not Dir.ToString() = CurrentConf Then
-                    Dir.Delete(True)
-                End If
-            Next
+            If Directory.Exists(CurrentConf) Then
+                Dim ConfPath = Directory.GetParent(CurrentConf)
+                For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
+                    If Not Dir.ToString() = CurrentConf Then
+                        Dir.Delete(True)
+                    End If
+                Next
+            End If
         End If
         If Not My.Settings.GPUSelected Then
             Status.Content = "正在扫描显卡"
