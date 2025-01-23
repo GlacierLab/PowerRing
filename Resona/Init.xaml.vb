@@ -62,7 +62,10 @@ Public Class Init
             If ConfPath.Exists Then
                 Status.Content = "正在导入旧版配置"
                 Await Task.Run(Sub()
-                                   My.Settings.Upgrade()
+                                   Try
+                                       My.Settings.Upgrade()
+                                   Catch ex As Exception
+                                   End Try
                                    For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
                                        If Not Dir.ToString() = CurrentConf Then
                                            Dir.Delete(True)
