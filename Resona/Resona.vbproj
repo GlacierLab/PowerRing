@@ -98,7 +98,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd ..&#xD;&#xA;node PrepareFontGenerator.js&#xD;&#xA;.\fontsubset-console.exe -c .\ XiaolaiSC.ttf Resona\XiaolaiSC.ttf&#xD;&#xA;cd Resona" />
+    <Exec Command="cd ..&#xD;&#xA;node PrepareFontGenerator.js&#xD;&#xA;.\fontsubset-console.exe -c .\ XiaolaiSC.ttf Resona\XiaolaiSC.ttf&#xD;&#xA;powershell -Command &quot;(gci Resona\XiaolaiSC.ttf).LastWriteTime=01.01&quot;&#xD;&#xA;cd Resona" />
   </Target>
 
 </Project>

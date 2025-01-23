@@ -3,7 +3,6 @@ const ext = ["xaml", "vb", "cs"];
 const fs = require('fs');
 const path = require("path");
 const dirname = path.resolve("./");
-console.log("Initialize...");
 
 let result = [];
 
@@ -31,7 +30,6 @@ const walk = function (dir) {
 };
 let arr = walk(dirname);
 arr.forEach(item => {
-    console.log("Processing: " + item);
     let content = fs.readFileSync(item, 'utf8');
     Array.from(content).forEach(item => {
         if (result.indexOf(item) < 0) {
