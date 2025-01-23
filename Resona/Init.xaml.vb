@@ -4,6 +4,7 @@ Imports System.Security.Principal
 Imports System.Threading
 
 Public Class Init
+    Dim RainbowBrush As Brush
     Public Sub New()
         If My.Settings.LaunchAsAdmin And Not IsAdministrator() Then
             Dim info As New ProcessStartInfo(System.Environment.ProcessPath, "--runas=admin") With {
@@ -22,6 +23,7 @@ Public Class Init
         Dim createdNew As Boolean
         Application._mutex = New Mutex(True, "ProjectResona_PowerRing", createdNew)
         If Not createdNew Then
+            RainbowBrush = BorderBrush
             Status.Content = "无法同时运行多个实例" + Environment.NewLine + "点击继续并关闭其他实例"
             Status.Foreground = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFF0000"))
             BorderBrush = New SolidColorBrush(ColorConverter.ConvertFromString("#FFFF0000"))
@@ -33,18 +35,24 @@ Public Class Init
         End If
     End Sub
 
-    Private Sub KillAndReload(sender As Object, e As MouseButtonEventArgs)
-        Dim Proc = Process.GetProcessesByName("Resona")
-        If Proc.Length > 0 Then
-            For Each Pro In Proc
-                If Not Pro.Id Like Process.GetCurrentProcess().Id Then
-                    Pro.Kill()
-                End If
-            Next
-        End If
-        Dim NewInit As New Init()
-        NewInit.Show()
-        Close()
+    Private Async Sub KillAndReload(sender As Object, e As MouseButtonEventArgs)
+        ShowInTaskbar = False
+        Title = "Resona is loading..."
+        Status.Content = "启动中..."
+        Status.Foreground = Brushes.Black
+        BorderBrush = RainbowBrush
+        RemoveHandler MouseLeftButtonDown, AddressOf KillAndReload
+        Await Task.Run(Sub()
+                           Dim Proc = Process.GetProcessesByName("Resona")
+                           If Proc.Length > 0 Then
+                               For Each Pro In Proc
+                                   If Not Pro.Id Like Environment.ProcessId Then
+                                       Pro.Kill()
+                                   End If
+                               Next
+                           End If
+                       End Sub)
+        Init_ContentRendered(Nothing, Nothing)
     End Sub
 
     Private Async Function LoadMain() As Task
