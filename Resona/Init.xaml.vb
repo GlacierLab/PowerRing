@@ -57,16 +57,18 @@ Public Class Init
 
     Private Async Function LoadMain() As Task
         If Not ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).HasFile Then
-            Status.Content = "正在导入旧版配置"
-            My.Settings.Upgrade()
             Dim CurrentConf = Path.GetDirectoryName(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath)
-            If Directory.Exists(CurrentConf) Then
-                Dim ConfPath = Directory.GetParent(CurrentConf)
-                For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
-                    If Not Dir.ToString() = CurrentConf Then
-                        Dir.Delete(True)
-                    End If
-                Next
+            Dim ConfPath = Directory.GetParent(CurrentConf)
+            If ConfPath.Exists Then
+                Status.Content = "正在导入旧版配置"
+                Await Task.Run(Sub()
+                                   My.Settings.Upgrade()
+                                   For Each Dir As DirectoryInfo In ConfPath.GetDirectories()
+                                       If Not Dir.ToString() = CurrentConf Then
+                                           Dir.Delete(True)
+                                       End If
+                                   Next
+                               End Sub)
             End If
         End If
         If Not My.Settings.GPUSelected Then
@@ -75,7 +77,7 @@ Public Class Init
             Await SelectWindow.PreInit()
             SelectWindow.Show()
         Else
-            Dim Main As MainWindow = New MainWindow()
+            Dim Main As New MainWindow()
             Dim ReturnValue = Await Main.PreInit()
             If ReturnValue Then
                 Main.Show()
