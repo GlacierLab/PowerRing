@@ -34,7 +34,7 @@ Public Class SelectWindow
         dispatcherTimer.Interval = New TimeSpan(0, 0, 1)
         dispatcherTimer.Start()
         SupressOnLaunch.IsChecked = My.Settings.SupressOnLaunch
-        If IsRunningAsUwp() Then
+        If Util.IsRunningAsUwp() Then
             LaunchAsAdmin.IsEnabled = False
             LaunchAsAdmin.Content = "MSIX包不支持管理员启动"
             LaunchAsAdmin.ToolTip = "即使能够通过审核，由于MSIX包安装目录不可写，Ring0驱动仍然无法加载，手动使用管理员身份启动也不行"
@@ -105,18 +105,4 @@ Public Class SelectWindow
         Return sensor.SensorType.ToString() + " - " + sensor.Name + " (" + sensor.Identifier.ToString().Replace(sensor.Hardware.Identifier.ToString(), "") + ")"
     End Function
 
-    Const APPMODEL_ERROR_NO_PACKAGE As Long = 15700L
-
-    <DllImport("kernel32.dll", CharSet:=CharSet.Unicode, SetLastError:=True)>
-    Private Shared Function GetCurrentPackageFullName(ByRef packageFullNameLength As Integer, ByVal packageFullName As StringBuilder) As Integer
-    End Function
-
-    Public Shared Function IsRunningAsUwp() As Boolean
-        Dim length As Integer = 0
-        Dim sb As StringBuilder = New StringBuilder(0)
-        Dim result As Integer = GetCurrentPackageFullName(length, sb)
-        sb = New StringBuilder(length)
-        result = GetCurrentPackageFullName(length, sb)
-        Return result <> APPMODEL_ERROR_NO_PACKAGE
-    End Function
 End Class
