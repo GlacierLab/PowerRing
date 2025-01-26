@@ -6,16 +6,14 @@ Public Class SelectWindow
     Private GPUList = New List(Of IHardware)
     Private SensorList = New List(Of ISensor)
     Private SelectedSensor As ISensor
-    Private _computer As Computer
     Public Async Function PreInit() As Task
         Await Task.Run(Sub()
-                           _computer = New Computer With {
-                               .IsGpuEnabled = True
-                           }
-                           _computer.Open()
-                           For i As Integer = 0 To _computer.Hardware.Count() - 1
-                               If _computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or _computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or _computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
-                                   GPUList.Add(_computer.Hardware(i))
+                           If Application._computer Is Nothing Then
+                               Application.InitComputer()
+                           End If
+                           For i As Integer = 0 To Application._computer.Hardware.Count() - 1
+                               If Application._computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or Application._computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or Application._computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
+                                   GPUList.Add(Application._computer.Hardware(i))
                                End If
                            Next
                        End Sub)
@@ -86,7 +84,6 @@ Public Class SelectWindow
         My.Settings.Save()
         My.Settings.SupressOnLaunch = SupressOnLaunch.IsChecked
         My.Settings.LaunchAsAdmin = LaunchAsAdmin.IsChecked
-        _computer.Close()
         Dim InitWindow = New Init()
         InitWindow.Show()
         Close()

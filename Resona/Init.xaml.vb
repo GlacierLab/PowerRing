@@ -12,7 +12,7 @@ Public Class Init
                     .Verb = "runas"
                 }
             Process.Start(info)
-            Environment.Exit(0)
+            Application.Current.Shutdown()
         Else
             InitializeComponent()
         End If

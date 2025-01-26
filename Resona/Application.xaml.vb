@@ -2,10 +2,13 @@
 Imports System.Reflection
 Imports System.Threading
 Imports System.Windows.Threading
+Imports LibreHardwareMonitor.Hardware
 
 Class Application
 
     Public Shared _mutex As Mutex = Nothing
+
+    Public Shared _computer As Computer = Nothing
 
     Public Sub New()
         If Command() = "--runas=admin" Then
@@ -24,7 +27,7 @@ Class Application
         e.Handled = False
     End Sub
 
-    Private Function Generate_VersionReport() As String
+    Private Shared Function Generate_VersionReport() As String
         Dim Result = ""
         Result += "版本号:" + Assembly.GetEntryAssembly().GetName().Version.ToString()
         Result += "%0A包渠道:" + If(Util.IsRunningAsUwp(), "MSIX", "Win32")
@@ -34,4 +37,16 @@ Class Application
         Return Result
     End Function
 
+    Public Shared Sub InitComputer()
+        _computer = New Computer With {
+            .IsGpuEnabled = True
+        }
+        _computer.Open()
+    End Sub
+
+    Private Sub Application_Exit(sender As Object, e As ExitEventArgs) Handles Me.[Exit]
+        If _computer IsNot Nothing Then
+            _computer.Close()
+        End If
+    End Sub
 End Class
