@@ -89,7 +89,7 @@ Public Class MainWindow
     End Sub
 
     Private Sub dispatcherTimer_Tick(sender As Object, e As EventArgs)
-        Dim CPU = Math.Round(CDbl(_computeruCounter.NextValue()), 1)
+        Dim CPU = Math.Round(_computeruCounter.NextValue(), 1)
         CPUPercent.Content = CPU.ToString() + "%"
         CurrentGPU.Update()
         Dim GPU = Math.Round(CDbl(GPUPowerSensor.Value()), 1)

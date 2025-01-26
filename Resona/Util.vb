@@ -6,7 +6,7 @@ Public Class Util
 
     Public Shared Function IsRunningAsUwp() As Boolean
         Dim length As Integer = 0
-        Dim sb As StringBuilder = New StringBuilder(0)
+        Dim sb As New StringBuilder(0)
         Dim result As Integer = NativeUtil.GetCurrentPackageFullName(length, sb)
         sb = New StringBuilder(length)
         result = NativeUtil.GetCurrentPackageFullName(length, sb)

@@ -1,6 +1,4 @@
-﻿Imports System.Runtime.InteropServices
-Imports System.Text
-Imports System.Windows.Threading
+﻿Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
 
 Public Class SelectWindow
