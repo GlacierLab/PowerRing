@@ -153,7 +153,7 @@ Public Class MainWindow
                 ClearCount()
             End If
             If WindowState = WindowState.Minimized Then
-                Title = "C:" + Fix(CPU).ToString() + "% G:" + Fix(GPU).ToString() + "W " + If(InSupress, "压制中", "未压制")
+                Title = "C:" + Fix(CPU).ToString() + "% G:" + Fix(GPU).ToString() + If(GPUPowerSensor.SensorType = SensorType.Load, "% ", "W ") + If(InSupress, "压制中", "未压制")
             End If
         End If
     End Sub
