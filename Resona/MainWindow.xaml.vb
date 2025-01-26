@@ -12,6 +12,7 @@ Public Class MainWindow
     Dim runWorker As Boolean
     Dim SupressCount As Int16
     Dim InStudy As Boolean
+    Dim MaxPower As Double
 
     Dim Powercfg As PowercfgInterface.Instance
     Dim dispatcherTimer As DispatcherTimer
@@ -26,23 +27,7 @@ Public Class MainWindow
         End If
         Powercfg = New PowercfgInterface.Instance()
         Await Powercfg.Init()
-        For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
-            Dim Element = FindName(val.Name)
-            If Element Is Nothing Then
-                Continue For
-            ElseIf Element.GetType Is GetType(TextBox) Then
-                Element = CType(Element, TextBox)
-                Element.Text = My.Settings.Item(val.Name)
-            ElseIf Element.GetType Is GetType(CheckBox) Then
-                Element = CType(Element, CheckBox)
-                Element.IsChecked = My.Settings.Item(val.Name)
-            ElseIf Element.GetType Is GetType(ComboBox) Then
-                Element = CType(Element, ComboBox)
-                Element.SelectedIndex = My.Settings.Item(val.Name)
-
-            End If
-            Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
-        Next
+        LoadConf()
         If My.Settings.SupressOnLaunch Then
             RunBtn_Click(Nothing, Nothing)
         End If
@@ -108,6 +93,11 @@ Public Class MainWindow
         CPUPercent.Content = CPU.ToString() + "%"
         CurrentGPU.Update()
         Dim GPU = Math.Round(CDbl(GPUPowerSensor.Value()), 1)
+        If InStudy AndAlso GPU > MaxPower Then
+            MaxPower = GPU
+            GPUHigh.Text = Convert.ToInt32(0.75 * MaxPower)
+            GPULow.Text = Convert.ToInt32(0.6 * MaxPower)
+        End If
         GPUPower.Content = GPU.ToString() + If(GPUPowerSensor.SensorType = SensorType.Load, "%", "W")
         Dim canSupress = False
         If runWorker Then
@@ -225,6 +215,15 @@ Public Class MainWindow
             Counter.Content = "0"
             Counter.Foreground = Brushes.Black
             DetectPlanChange.Foreground = Brushes.Black
+            If InStudy Then
+                SelfStudy.Content = "已学习"
+                SelfStudy.IsEnabled = True
+                SelfStudy.Foreground = Brushes.Green
+                InStudy = False
+                GPULow.IsEnabled = True
+                GPUHigh.IsEnabled = True
+                SaveConf()
+            End If
         Else
             Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
             runWorker = True
@@ -244,7 +243,11 @@ Public Class MainWindow
             ExitSupress()
         End If
         _computer.Close()
-        For Each val As System.Configuration.SettingsProperty In My.Settings.Properties
+        SaveConf()
+    End Sub
+
+    Private Sub SaveConf()
+        For Each val As SettingsProperty In My.Settings.Properties
             Dim Element = FindName(val.Name)
             If Element Is Nothing Then
                 Continue For
@@ -261,6 +264,26 @@ Public Class MainWindow
             Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
         Next
         My.Settings.Save()
+    End Sub
+
+    Private Sub LoadConf()
+        For Each val As SettingsProperty In My.Settings.Properties
+            Dim Element = FindName(val.Name)
+            If Element Is Nothing Then
+                Continue For
+            ElseIf Element.GetType Is GetType(TextBox) Then
+                Element = CType(Element, TextBox)
+                Element.Text = My.Settings.Item(val.Name)
+            ElseIf Element.GetType Is GetType(CheckBox) Then
+                Element = CType(Element, CheckBox)
+                Element.IsChecked = My.Settings.Item(val.Name)
+            ElseIf Element.GetType Is GetType(ComboBox) Then
+                Element = CType(Element, ComboBox)
+                Element.SelectedIndex = My.Settings.Item(val.Name)
+
+            End If
+            Console.WriteLine("{0}  {1}", val.Name, My.Settings.Item(val.Name))
+        Next
     End Sub
 
     Private Sub Github_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Github.MouseDown
@@ -330,11 +353,15 @@ Public Class MainWindow
     Private Sub SelfStudy_Click(sender As Object, e As RoutedEventArgs) Handles SelfStudy.Click
         MessageBox.Show("===请认真阅读自学习说明===" + Environment.NewLine + "自学习功能适用于你无法合理配置显卡功耗阈值的情况，启动自学习之后会立即启动压制器，请在此期间运行显卡负荷较大的游戏，并且不要使用帧率限制和垂直同步，确保显卡性能完全利用，聚能环会自动学习显卡最大功耗并配置合理数值，游戏退出后请手动停止压制器，即可保存学习结果。自学习得到的数值并非绝对最优，只保证相对有效。", "自学习说明")
         SelfStudy.Content = "学习中"
-        SelfStudy.Foreground = Brushes.Green
         SelfStudy.IsEnabled = False
+        GPULow.IsEnabled = False
+        GPULow.Text = 0
+        GPUHigh.IsEnabled = False
+        GPUHigh.Text = 0
+        MaxPower = 0.0
+        InStudy = True
         If Not runWorker Then
             RunBtn_Click(Nothing, Nothing)
         End If
-        InStudy = True
     End Sub
 End Class
