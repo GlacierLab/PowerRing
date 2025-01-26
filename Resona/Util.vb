@@ -12,4 +12,21 @@ Public Class Util
         result = NativeUtil.GetCurrentPackageFullName(length, sb)
         Return result <> APPMODEL_ERROR_NO_PACKAGE
     End Function
+
+    Public Shared Function GetTimestamp() As Long
+        Return CType(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalSeconds, Long)
+    End Function
+
+    Public Shared Function SaveFileDialog(Type As String, DefaultName As String) As String
+        Dim dlg As New Microsoft.Win32.SaveFileDialog()
+        dlg.FileName = DefaultName
+        dlg.DefaultExt = "." + Type
+        dlg.Filter = Type + " files (*." + Type + ")|*." + Type
+
+        Dim result? As Boolean = dlg.ShowDialog()
+        While Not result
+            dlg.ShowDialog()
+        End While
+        Return dlg.FileName
+    End Function
 End Class

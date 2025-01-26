@@ -1,8 +1,10 @@
 ﻿Imports System.ComponentModel
 Imports System.Configuration
+Imports System.IO
 Imports System.Reflection
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
+Imports Microsoft.Win32
 
 Public Class MainWindow
     Dim _computeruCounter As PerformanceCounter
@@ -17,6 +19,7 @@ Public Class MainWindow
     Dim Powercfg As PowercfgInterface.Instance
     Dim dispatcherTimer As DispatcherTimer
 
+    Dim CurrentRecorder As Recorder
 
     Public Async Function PreInit() As Task(Of Boolean)
         Title = "聚能环 PowerRing " + Assembly.GetEntryAssembly().GetName().Version.ToString()
@@ -143,6 +146,9 @@ Public Class MainWindow
             If WindowState = WindowState.Minimized Then
                 Title = "C:" + Fix(CPU).ToString() + "% G:" + Fix(GPU).ToString() + If(GPUPowerSensor.SensorType = SensorType.Load, "% ", "W ") + If(InSupress, "压制中", "未压制")
             End If
+            If EnableRecord.IsChecked Then
+                CurrentRecorder.AddRecord(CPU, GPU, InSupress, SupressCount)
+            End If
         End If
     End Sub
     Private Async Sub ExitSupress()
@@ -199,7 +205,7 @@ Public Class MainWindow
         Counter.Content = "0"
     End Sub
 
-    Private Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
+    Private Async Sub RunBtn_Click(sender As Object, e As RoutedEventArgs) Handles RunBtn.Click
         If runWorker Then
             runWorker = False
             If InSupress Then
@@ -222,6 +228,17 @@ Public Class MainWindow
                 GPUHigh.IsEnabled = True
                 SaveConf()
             End If
+            EnableRecord.IsChecked = False
+            EnableRecord.Content = "正在保存数据..."
+            Dim FileName = Util.SaveFileDialog("csv", "ResonaRecord-" + Util.GetTimestamp().ToString())
+            Await Task.Run(Sub()
+                               Dim FileStream = File.OpenWrite(FileName)
+                               CurrentRecorder.WriteCSV(FileStream)
+                               FileStream.Close()
+                           End Sub)
+            EnableRecord.Content = "记录本次运行数据"
+            EnableRecord.IsEnabled = True
+            CurrentRecorder = Nothing
         Else
             Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
             runWorker = True
@@ -229,6 +246,11 @@ Public Class MainWindow
             RunBtn.Background = New SolidColorBrush(ColorConverter.ConvertFromString("#FF86C166"))
             If DetectPlanChange.IsChecked Then
                 DetectPlanChange.Foreground = Brushes.Green
+            End If
+            EnableRecord.IsEnabled = False
+            If EnableRecord.IsChecked Then
+                CurrentRecorder = New Recorder()
+                EnableRecord.Content = "数据记录中..."
             End If
         End If
     End Sub

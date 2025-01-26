@@ -62,6 +62,7 @@
         <Button x:Name="ApplyMode" Content="应用" Margin="420,210,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,4,5,4"/>
         <Label x:Name="ConfDir" Content="打开配置目录" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top" Width="115" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" Cursor="Hand"/>
         <Button x:Name="SelfStudy" Content="自学习" Margin="407,111,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,4,5,4" Width="63" Visibility="Hidden"/>
+        <CheckBox x:Name="EnableRecord" Content="记录本次运行数据" Margin="240,323,0,0" ToolTip="记录参数并在结束压制后写入到文件以供分析，启用此功能后请及时在结束游戏后停止压制器，否则长时间的数据记录可能会导致爆内存，为防止误操作本选项不会记忆选中，每次启动压制时都必须手动重新勾选" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
 
 
     </Grid>
