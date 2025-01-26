@@ -5,12 +5,13 @@ Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
 
 Public Class MainWindow
-    Dim _computeruCounter
-    Dim GPUPowerSensor
-    Dim CurrentGPU
-    Dim InSupress
-    Dim runWorker
-    Dim SupressCount
+    Dim _computeruCounter As PerformanceCounter
+    Dim GPUPowerSensor As ISensor
+    Dim CurrentGPU As IHardware
+    Dim InSupress As Boolean
+    Dim runWorker As Boolean
+    Dim SupressCount As Int16
+    Dim InStudy As Boolean
 
     Dim Powercfg As PowercfgInterface.Instance
     Dim dispatcherTimer As DispatcherTimer
@@ -44,6 +45,10 @@ Public Class MainWindow
         Next
         If My.Settings.SupressOnLaunch Then
             RunBtn_Click(Nothing, Nothing)
+        End If
+        '''只有功率传感器值得自学习
+        If GPUPowerSensor.SensorType = SensorType.Power Then
+            SelfStudy.Visibility = Visibility.Visible
         End If
         Return True
     End Function
@@ -320,5 +325,16 @@ Public Class MainWindow
             .UseShellExecute = True,
             .Verb = "open"
         })
+    End Sub
+
+    Private Sub SelfStudy_Click(sender As Object, e As RoutedEventArgs) Handles SelfStudy.Click
+        MessageBox.Show("===请认真阅读自学习说明===" + Environment.NewLine + "自学习功能适用于你无法合理配置显卡功耗阈值的情况，启动自学习之后会立即启动压制器，请在此期间运行显卡负荷较大的游戏，并且不要使用帧率限制和垂直同步，确保显卡性能完全利用，聚能环会自动学习显卡最大功耗并配置合理数值，游戏退出后请手动停止压制器，即可保存学习结果。自学习得到的数值并非绝对最优，只保证相对有效。", "自学习说明")
+        SelfStudy.Content = "学习中"
+        SelfStudy.Foreground = Brushes.Green
+        SelfStudy.IsEnabled = False
+        If Not runWorker Then
+            RunBtn_Click(Nothing, Nothing)
+        End If
+        InStudy = True
     End Sub
 End Class
