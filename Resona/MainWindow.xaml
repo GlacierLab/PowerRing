@@ -11,23 +11,23 @@
         <Label Content="CPU监控设置" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"  VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="CPUPercent" Content="--%" HorizontalAlignment="Right" Margin="0,15,10,0" VerticalAlignment="Top" ToolTip="红色：CPU压制禁用；黄色：不改变压制状态；绿色：CPU压制可用" FontSize="16" VerticalContentAlignment="Center" />
         <Label Content="触发占用(%)" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用高于此数值时无条件恢复CPU满血" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="CPUHigh" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,46,279,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" FontSize="14"  Padding="5,0,5,0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="CPUHigh" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,44,279,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" FontSize="14"  Padding="5,0,5,0" VerticalContentAlignment="Center"/>
         <Label Content="释放占用(%)" HorizontalAlignment="Left" Margin="226,46,0,0" VerticalAlignment="Top" ToolTip="CPU占用低于此数值时允许压制CPU功耗改善显卡性能" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="CPULow" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="318,46,10,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
+        <TextBox x:Name="CPULow" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="318,44,71,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0" Width="91"/>
         <Label Content="显卡监控设置" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" FontSize="20"  VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="GPUPower" Content="--W" HorizontalAlignment="Right" Margin="0,82,10,0" VerticalAlignment="Top" ToolTip="红色：达到触发功耗；绿色：未达到触发功耗" FontSize="16" VerticalContentAlignment="Center" />
         <Label Content="触发阈值" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用高于此数值时尝试压制CPU功耗" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="GPUHigh" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,113,261,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0" Width="109"/>
+        <TextBox x:Name="GPUHigh" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,111,261,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0" Width="109"/>
         <Label Content="释放阈值" HorizontalAlignment="Left" Margin="224,113,0,0" VerticalAlignment="Top" ToolTip="显卡占用低于此数值时允许CPU恢复满血" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="GPULow" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="293,113,78,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0" Width="109"/>
+        <TextBox x:Name="GPULow" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="293,111,78,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0" Width="109"/>
         <Label Content="压制器设置" HorizontalAlignment="Left" Margin="11,144,0,0" VerticalAlignment="Top" FontSize="20"  VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="Counter" Content="0" HorizontalAlignment="Right" Margin="0,149,10,0" VerticalAlignment="Top" ToolTip="红色：即将禁用压制；绿色：即将启用压制" FontSize="16" RenderTransformOrigin="-0.842,0.94" />
         <Label Content="切换阈值(次)" HorizontalAlignment="Left" Margin="11,180,0,0" VerticalAlignment="Top" ToolTip="连续多少次检测时没满足切换要求则切换压制状态" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="BeforeTime" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,180,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
+        <TextBox x:Name="BeforeTime" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox" TextChanged="NumberFormatTextBox" Margin="110,178,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
         <Label x:Name="SupressStatus" Content="压制状态：无效" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold" />
-        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Width="230" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" Cursor="Hand"/>
-        <Button x:Name="RunBtn" Content="启动压制器" Margin="0,303,0,0" VerticalAlignment="Top" Height="43" FontSize="24" FontWeight="Bold" Width="460" HorizontalAlignment="Center"/>
-        <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" Margin="244,178,0,0" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
+        <Label x:Name="Github" Content="琴梨梨  Glacier Lab 2024" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="230" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" Cursor="Hand"/>
+        <Button x:Name="RunBtn" Content="启动压制器" Margin="0,275,0,0" VerticalAlignment="Top" Height="43" FontSize="24" FontWeight="Bold" Width="460" HorizontalAlignment="Center"/>
+        <CheckBox x:Name="IgnoreCPU" Content="无视CPU占用强制压制" Margin="244,175,0,0" ToolTip="选中后CPU检测不再生效，只根据GPU功耗判断" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
         <Label Content="压制模式" HorizontalAlignment="Left" Margin="11,211,0,0" VerticalAlignment="Top" ToolTip="压制时的睿频模式" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <Label Content="解除模式" HorizontalAlignment="Left" Margin="226,212,0,0" VerticalAlignment="Top" ToolTip="解除压制后恢复到的睿频模式" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
         <ComboBox x:Name="SupressMode" HorizontalAlignment="Left" Margin="80,210,0,0" VerticalAlignment="Top" Width="120" Padding="5,0,5,0" VerticalContentAlignment="Center" FontSize="16">
@@ -54,14 +54,14 @@
         </ComboBox>
         <Label Content="指标" HorizontalAlignment="Left" Margin="183,11,0,0" VerticalAlignment="Top" Height="26"  VerticalContentAlignment="Center" RenderTransformOrigin="0.572,-0.106" FontSize="16"/>
         <Label Content="刷新频率(秒)" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" ToolTip="每隔多少秒刷新一次" Height="26"  VerticalContentAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="TickInterval" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox"  Margin="110,243,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
+        <TextBox x:Name="TickInterval" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="NumberValidationTextBox"  Margin="110,240,240,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="26" FontSize="14"  VerticalContentAlignment="Center" Padding="5,0,5,0"/>
         <Label   HorizontalAlignment="Left" Margin="140,72,0,0" VerticalAlignment="Top" Height="32" MaxHeight="32" Width="173" VerticalContentAlignment="Center" MouseDown="GPUName_MouseDown">
             <TextBlock x:Name="GPUName" TextWrapping="Wrap"/>
         </Label>
         <CheckBox x:Name="DetectPlanChange" Content="检测电源计划变化" Margin="244,238,0,0" ToolTip="选中后每次调整压制状态都会更新当前电源计划，并表现为本选项颜色，红色代表电源计划发生过变化，启用此选项以保持与其他调整电源计划的工具的相容性，但可能会导致你的电源计划变得一团糟，后果自负" VerticalContentAlignment="Center" Padding="8,0,0,0" Height="28" FontSize="16" VerticalAlignment="Top"   />
-        <Button x:Name="ApplyMode" Content="应用" Margin="420,207,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,5,5,5"/>
-        <Label x:Name="ConfDir" Content="打开配置目录" HorizontalAlignment="Left" Margin="355,354,0,0" VerticalAlignment="Top" Width="115" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" HorizontalContentAlignment="Right" Cursor="Hand"/>
-        <Button x:Name="SelfStudy" Content="自学习" Margin="407,108,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,5,5,5" Width="63" Visibility="Hidden"/>
+        <Button x:Name="ApplyMode" Content="应用" Margin="420,210,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,4,5,4"/>
+        <Label x:Name="ConfDir" Content="打开配置目录" HorizontalAlignment="Left" Margin="10,323,0,0" VerticalAlignment="Top" Width="115" VerticalContentAlignment="Center" FontSize="14" Foreground="Blue" Cursor="Hand"/>
+        <Button x:Name="SelfStudy" Content="自学习" Margin="407,111,0,0" VerticalAlignment="Top" FontSize="16" Padding="5,4,5,4" Width="63" Visibility="Hidden"/>
 
 
     </Grid>
