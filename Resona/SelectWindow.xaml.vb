@@ -3,14 +3,31 @@ Imports LibreHardwareMonitor.Hardware
 
 Public Class SelectWindow
 
-    Private GPUList = New List(Of IHardware)
-    Private SensorList = New List(Of ISensor)
+    Private GPUList As List(Of IHardware)
+    Private SensorList As List(Of ISensor)
     Private SelectedSensor As ISensor
     Public Async Function PreInit() As Task
+        Dim dispatcherTimer = New Threading.DispatcherTimer()
+        AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
+        dispatcherTimer.Interval = New TimeSpan(0, 0, 1)
+        dispatcherTimer.Start()
+        Await ScanGPU()
+        SupressOnLaunch.IsChecked = My.Settings.SupressOnLaunch
+        If Util.IsRunningAsUwp() Then
+            LaunchAsAdmin.IsEnabled = False
+            LaunchAsAdmin.Content = "MSIX包不支持管理员启动"
+            LaunchAsAdmin.ToolTip = "即使能够通过审核，由于MSIX包安装目录不可写，Ring0驱动仍然无法加载，手动使用管理员身份启动也不行"
+        Else
+            LaunchAsAdmin.IsChecked = My.Settings.LaunchAsAdmin
+        End If
+    End Function
+
+    Public Async Function ScanGPU() As Task
         Await Task.Run(Sub()
                            If Application._computer Is Nothing Then
                                Application.InitComputer()
                            End If
+                           GPUList = New List(Of IHardware)
                            For i As Integer = 0 To Application._computer.Hardware.Count() - 1
                                If Application._computer.Hardware(i).HardwareType = HardwareType.GpuNvidia Or Application._computer.Hardware(i).HardwareType = HardwareType.GpuAmd Or Application._computer.Hardware(i).HardwareType = HardwareType.GpuIntel Then
                                    GPUList.Add(Application._computer.Hardware(i))
@@ -25,27 +42,14 @@ Public Class SelectWindow
             GPUName.Items.Add(label)
         Next
         GPUName.SelectedIndex = 0
-        Dim dispatcherTimer = New Threading.DispatcherTimer()
-        AddHandler dispatcherTimer.Tick, AddressOf dispatcherTimer_Tick
-        dispatcherTimer.Interval = New TimeSpan(0, 0, 1)
-        dispatcherTimer.Start()
-        SupressOnLaunch.IsChecked = My.Settings.SupressOnLaunch
-        If Util.IsRunningAsUwp() Then
-            LaunchAsAdmin.IsEnabled = False
-            LaunchAsAdmin.Content = "MSIX包不支持管理员启动"
-            LaunchAsAdmin.ToolTip = "即使能够通过审核，由于MSIX包安装目录不可写，Ring0驱动仍然无法加载，手动使用管理员身份启动也不行"
-        Else
-            LaunchAsAdmin.IsChecked = My.Settings.LaunchAsAdmin
-        End If
     End Function
-
     Private Sub GPUName_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles GPUName.SelectionChanged
-        If GPUName.SelectedIndex > -1 And GPUList.Count() > 0 Then
+        If GPUName.SelectedIndex > -1 And GPUList IsNot Nothing AndAlso GPUList.Count() > 0 Then
             SensorList = New List(Of ISensor)
             Dim GPU = GPUList(GPUName.SelectedIndex)
             SensorName.Items.Clear()
             GPU.Update()
-            For i As Integer = 0 To GPU.Sensors.length() - 1
+            For i As Integer = 0 To GPU.Sensors.Length() - 1
                 If GPU.Sensors(i).SensorType = SensorType.Power Or GPU.Sensors(i).SensorType = SensorType.Load Then
                     SensorList.Add(GPU.Sensors(i))
                 End If
@@ -71,7 +75,7 @@ Public Class SelectWindow
     End Sub
 
     Private Sub SensorName_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles SensorName.SelectionChanged
-        If SensorName.SelectedIndex > -1 And SensorList.Count() > 0 Then
+        If SensorName.SelectedIndex > -1 And SensorList IsNot Nothing AndAlso SensorList.Count() > 0 Then
             SelectedSensor = SensorList(SensorName.SelectedIndex)
             SaveBtn.IsEnabled = True
         End If
@@ -100,4 +104,14 @@ Public Class SelectWindow
         Return sensor.SensorType.ToString() + " - " + sensor.Name + " (" + sensor.Identifier.ToString().Replace(sensor.Hardware.Identifier.ToString(), "") + ")"
     End Function
 
+    Private Async Sub ScanBtn_Click(sender As Object, e As RoutedEventArgs) Handles ScanBtn.Click
+        ScanBtn.IsEnabled = False
+        ScanBtn.Content = "扫描中"
+        Await Task.Run(Sub()
+                           Application.InitComputer(True)
+                       End Sub)
+        Await ScanGPU()
+        ScanBtn.IsEnabled = True
+        ScanBtn.Content = "扫描完成"
+    End Sub
 End Class

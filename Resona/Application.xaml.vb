@@ -37,7 +37,14 @@ Class Application
         Return Result
     End Function
 
-    Public Shared Sub InitComputer()
+    Public Shared Sub InitComputer(Optional Rescan As Boolean = False)
+        If Rescan Then
+            _computer.Close()
+            _computer = Nothing
+        End If
+        If _computer IsNot Nothing Then
+            Return
+        End If
         _computer = New Computer With {
             .IsGpuEnabled = True
         }
