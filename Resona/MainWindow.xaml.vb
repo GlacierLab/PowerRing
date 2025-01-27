@@ -4,7 +4,6 @@ Imports System.IO
 Imports System.Reflection
 Imports System.Windows.Threading
 Imports LibreHardwareMonitor.Hardware
-Imports Microsoft.Win32
 
 Public Class MainWindow
     Dim _computeruCounter As PerformanceCounter

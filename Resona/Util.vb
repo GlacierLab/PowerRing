@@ -14,7 +14,7 @@ Public Class Util
     End Function
 
     Public Shared Function GetTimestamp() As Long
-        Return CType(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalSeconds, Long)
+        Return Date.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalSeconds
     End Function
 
     Public Shared Function SaveFileDialog(Type As String, DefaultName As String) As String
