@@ -218,6 +218,7 @@ Public Class MainWindow
             Counter.Content = "0"
             Counter.Foreground = Brushes.Black
             DetectPlanChange.Foreground = Brushes.Black
+            ApplyMode.IsEnabled = True
             If InStudy Then
                 SelfStudy.Content = "已学习"
                 SelfStudy.IsEnabled = True
@@ -248,6 +249,7 @@ Public Class MainWindow
             If DetectPlanChange.IsChecked Then
                 DetectPlanChange.Foreground = Brushes.Green
             End If
+            ApplyMode.IsEnabled = False
             EnableRecord.IsEnabled = False
             If EnableRecord.IsChecked Then
                 CurrentRecorder = New Recorder()
