@@ -227,17 +227,19 @@ Public Class MainWindow
                 GPUHigh.IsEnabled = True
                 SaveConf()
             End If
-            EnableRecord.IsChecked = False
-            EnableRecord.Content = "正在保存数据..."
-            Dim FileName = Util.SaveFileDialog("csv", "ResonaRecord-" + Util.GetTimestamp().ToString())
-            Await Task.Run(Sub()
-                               Dim FileStream = File.OpenWrite(FileName)
-                               CurrentRecorder.WriteCSV(FileStream)
-                               FileStream.Close()
-                           End Sub)
-            EnableRecord.Content = "记录本次运行数据"
-            EnableRecord.IsEnabled = True
-            CurrentRecorder = Nothing
+            If EnableRecord.IsChecked Then
+                EnableRecord.IsChecked = False
+                EnableRecord.Content = "正在保存数据..."
+                Dim FileName = Util.SaveFileDialog("csv", "ResonaRecord-" + Util.GetTimestamp().ToString())
+                Await Task.Run(Sub()
+                                   Dim FileStream = File.OpenWrite(FileName)
+                                   CurrentRecorder.WriteCSV(FileStream)
+                                   FileStream.Close()
+                               End Sub)
+                EnableRecord.Content = "记录本次运行数据"
+                EnableRecord.IsEnabled = True
+                CurrentRecorder = Nothing
+            End If
         Else
             Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
             runWorker = True
