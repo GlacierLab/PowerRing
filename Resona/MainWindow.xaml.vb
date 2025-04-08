@@ -240,6 +240,8 @@ Public Class MainWindow
                 EnableRecord.Content = "记录本次运行数据"
                 EnableRecord.IsEnabled = True
                 CurrentRecorder = Nothing
+            Else
+                EnableRecord.IsEnabled = True
             End If
         Else
             Taskbar.ProgressState = Shell.TaskbarItemProgressState.Normal
