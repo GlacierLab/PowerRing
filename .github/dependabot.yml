@@ -9,3 +9,7 @@ updates:
     directory: "/Resona/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "dotnet-sdk"
+    directory: "/Resona/"
+    schedule:
+      interval: "weekly"
