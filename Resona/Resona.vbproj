@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.5-pre563" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.5-pre588" />
   </ItemGroup>
 
   <ItemGroup>
